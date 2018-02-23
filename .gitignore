@@ -1,0 +1,12 @@
+#objets
+*.o
+
+#executable
+chip8disassembler
+
+#ressources
+roms
+
+#
+.gch
+.pch
