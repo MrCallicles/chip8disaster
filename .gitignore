@@ -2,7 +2,7 @@
 *.o
 
 #executable
-chip8disassembler
+chip8disaster
 
 #ressources
 roms

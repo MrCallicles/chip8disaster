@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdint.h>
+#include <stdint.h> 
 #include <stdbool.h>
 #include "stack.h"
 #include "format.h"

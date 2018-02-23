@@ -1,14 +1,15 @@
 CC = gcc
 CFLAGS=-Wall
+NAME= chip8disaster
 
 
-all: chip8disassembler
+all: $(NAME)
 
 clean:
-	rm *.o chip8disassembler
+	rm *.o $(NAME)
 
-chip8disassembler: main.c format.o cpu.o stack.o init.o
-	$(CC) main.c format.o cpu.o stack.o init.o $(CFLAGS) -o chip8disassembler
+$(NAME): main.c format.o cpu.o stack.o init.o
+	$(CC) main.c format.o cpu.o stack.o init.o $(CFLAGS) -o $(NAME)
 
 format.o: format.c format.h
 	$(CC) -c format.c $(CFLAGS) -o format.o

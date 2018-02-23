@@ -4,6 +4,12 @@
 #include "stack.h"
 #include "cpu.h"
 
+void decrementDelaySound(Cpu *cpu)
+{
+    if(cpu->DT > 0) cpu->DT--;
+    if(cpu->ST > 0) cpu->ST--;
+}
+
 void initCPU(Cpu *cpu)
 {
     for(uint8_t i = 0; i < NBRREG; i++){
@@ -96,6 +102,7 @@ void execCPU(Cpu *cpu,
     opTwo = getOpTwoValue(cpu->I, masque, id);
     execOpCodeCPU(cpu, instruction, opOne, opTwo);
     //CPU->I must point to the next instruction ?
+    decrementDelaySound(cpu);
     cpu->I = getOpcode(cpu->mem[cpu->PC], cpu->mem[cpu->PC + 1]);
 }
 
@@ -113,6 +120,8 @@ void execOpCodeCPU(Cpu *cpu,
             break;
         case 2:
             //RET
+            cpu->PC = cpu->N[cpu->SP];
+            cpu->SP -= 1;
             break;
         case 3:
             //JP
@@ -120,6 +129,9 @@ void execOpCodeCPU(Cpu *cpu,
             break;
         case 4:
             //CALL
+            cpu->PC += 1;
+            cpu->N[cpu->SP] = cpu->PC;
+            cpu->PC = opOne;
             break;
         case 5:
             //SE
