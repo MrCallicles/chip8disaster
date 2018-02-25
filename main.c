@@ -28,14 +28,14 @@ int main(int argc, char* argv[argc+1])
     uint32_t size = 0;
     Cpu cpu;
     if(argc < 2)
-    { 
+    {
         fprintf(stderr, "Chemin de la rom manquant\n");
-        exit(EXIT_FAILURE); 
-    } 
-    init(stack, stackOpcode, instructionStack, 
-         masque, id, instructionASM, GETROMARGV, 
+        exit(EXIT_FAILURE);
+    }
+    init(stack, stackOpcode, instructionStack,
+         masque, id, instructionASM, GETROMARGV,
          rom, &size);
-    if(argc >= 3) 
+    if(argc >= 3)
     {
         initCPU(&cpu);
         loadRomCPU(&cpu, GETROMARGV, rom, &size);
@@ -44,7 +44,7 @@ int main(int argc, char* argv[argc+1])
     else if(argc == 2)
     {
         formatASM(stackOpcode, instructionStack,
-                masque, id, instructionASM, size); 
+                masque, id, instructionASM, size);
     }
     if(rom != NULL) fclose(rom);
     exit(EXIT_SUCCESS);
@@ -59,7 +59,7 @@ void gdbASM(Cpu *cpu, uint16_t masque[NBRINSTRUCTION],
         printf("chip8gdb >");
         fflush(stdout);
         scanf("%511s", command);
-        if(!strcmp(command, "exit"))
+        if(!strcmp(command, "exit") || !strcmp(command, "quit"))
         {
             printf("Bye !\n");
             break;
@@ -89,6 +89,10 @@ void gdbASM(Cpu *cpu, uint16_t masque[NBRINSTRUCTION],
         else if(!strcmp(command, "step") || !strcmp(command, "s"))
         {
             execCPU(cpu, masque, id);
+        }
+        else if(!strcmp(command, "memoire") || !strcmp(command, "mem"))
+        {
+            debugMemCPU(cpu);
         }
     }
 }

@@ -7,7 +7,8 @@
 #define NBRREG 16
 #define NBRNEST 16
 #define MEMSIZE 4096
-#define INSTRUCTIONADRESSINIT 0x200 
+#define INSTRUCTIONADRESSINIT 0x200
+#define DEBUGMEMLIST 20
 
 //represent the CPU for
 //gdbASM
@@ -18,7 +19,7 @@ typedef struct{
     uint8_t ST; //Sound timer
     uint16_t PC; //Program counter
     uint8_t SP; //Stack Pointer
-    uint16_t N[NBRNEST]; //Nested (stack)
+    uint16_t stack[NBRNEST]; //Nested (stack)
     uint8_t mem[MEMSIZE]; //memoire
 } Cpu;
 
@@ -28,6 +29,7 @@ void initCPU(Cpu *cpu);
 void loadRomCPU(Cpu* cpu, char* pathRom, FILE* rom, uint32_t* size);
 void debugCPU(Cpu* cpu);
 void debugRegCPU(Cpu* cpu);
+void debugMemCPU(Cpu* cpu);
 void runCPU(Cpu *cpu,
             bool step,
             uint16_t masque[NBRINSTRUCTION],

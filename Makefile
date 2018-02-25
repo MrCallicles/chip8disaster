@@ -1,7 +1,10 @@
 CC = gcc
-CFLAGS=-Wall
+CFLAGS=-Wall -pedantic -std=c11
 NAME= chip8disaster
+TESTNAME= test_chip
 
+test: format.o cpu.o stack.o init.o test.c
+	$(CC) test.c format.o cpu.o stack.o init.o $(CFLAGS) -o $(TESTNAME)
 
 all: $(NAME)
 

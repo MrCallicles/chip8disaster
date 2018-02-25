@@ -16,7 +16,7 @@ void initCPU(Cpu *cpu)
         cpu->V[i] = 0;
      }
     for(uint8_t i = 0; i < NBRNEST; i++){
-        cpu->N[i] = 0;
+        cpu->stack[i] = 0;
     }
     for(uint16_t i = 0; i < INSTRUCTIONADRESSINIT; i++){
         cpu->mem[i] = 0;
@@ -52,6 +52,22 @@ void debugRegCPU(Cpu* cpu)
         if(i % 2 != 0 && i != 0)
         {
             printf("\n");
+        }
+    }
+}
+
+void debugMemCPU(Cpu* cpu)
+{
+    for(uint8_t i = -2; i < DEBUGMEMLIST; i++)
+    {
+        if(cpu->PC - 2 > 0)
+            printf("%d > 0x%x\n", cpu->PC + i, cpu->mem[cpu->PC + i]);
+        if(cpu->PC - 1 > 0)
+            printf("%d > 0x%x\n", cpu->PC + i, cpu->mem[cpu->PC + i]);
+        if(cpu->PC + i < MEMSIZE)
+        {
+            printf("%d > 0x%x\n", cpu->PC + i, cpu->mem[cpu->PC + i]);
+            if(i == 0) printf("<-- PC");
         }
     }
 }
@@ -103,7 +119,6 @@ void execCPU(Cpu *cpu,
     execOpCodeCPU(cpu, instruction, opOne, opTwo);
     //CPU->I must point to the next instruction ?
     decrementDelaySound(cpu);
-    cpu->I = getOpcode(cpu->mem[cpu->PC], cpu->mem[cpu->PC + 1]);
 }
 
 void execOpCodeCPU(Cpu *cpu,
@@ -120,7 +135,7 @@ void execOpCodeCPU(Cpu *cpu,
             break;
         case 2:
             //RET
-            cpu->PC = cpu->N[cpu->SP];
+            cpu->PC = cpu->stack[cpu->SP];
             cpu->SP -= 1;
             break;
         case 3:
@@ -130,8 +145,8 @@ void execOpCodeCPU(Cpu *cpu,
         case 4:
             //CALL
             cpu->PC += 1;
-            cpu->N[cpu->SP] = cpu->PC;
-            cpu->PC = opOne;
+            cpu->stack[cpu->SP] = cpu->PC;
+            cpu->PC = opTwo;
             break;
         case 5:
             //SE
@@ -150,7 +165,7 @@ void execOpCodeCPU(Cpu *cpu,
             cpu->V[opOne] = opTwo;
             break;
         case 9:
-            //LD 
+            //LD
             cpu->V[opOne] = cpu->V[opOne] + opTwo;
             break;
         case 10:
@@ -202,7 +217,7 @@ void execOpCodeCPU(Cpu *cpu,
             break;
         case 18:
             //SHL
-            if(cpu->V[opOne] & 128) cpu->V[0xF] = 1; 
+            if(cpu->V[opOne] & 128) cpu->V[0xF] = 1;
             else cpu->V[0xF] = 0;
             cpu->V[opOne] = cpu->V[opOne] << 2;
             break;

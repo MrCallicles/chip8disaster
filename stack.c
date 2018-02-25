@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdint.h> 
+#include <stdint.h>
 #include <stdbool.h>
 #include "stack.h"
 #include "format.h"
@@ -194,7 +194,7 @@ void getOpOne(uint16_t opcode,
         case 0xF029: sprintf(str,"F"); break;//LD F, Vx
         case 0xF033: sprintf(str,"B"); break;//LD B,Vx
         case 0xF055: sprintf(str,"[I]"); break;//LD [I], Vx
-        case 0xF065: sprintf(str, "V%x", (opcode & 0x0F00) >> 8); break;//LD Vx, [I] 
+        case 0xF065: sprintf(str, "V%x", (opcode & 0x0F00) >> 8); break;//LD Vx, [I]
         default: sprintf(str, "RMAC"); break;
     }
 }
@@ -240,7 +240,7 @@ void getOpTwo(uint16_t opcode,
         case 0xF029: sprintf(str,"V%x", (opcode & 0x0F00) >> 8); break;//LD F, Vx
         case 0xF033: sprintf(str,"V%x", (opcode & 0x0F00) >> 8); break;//LD B,Vx
         case 0xF055: sprintf(str,"V%x", (opcode & 0x0F00) >> 8); break;//LD [I], Vx
-        case 0xF065: sprintf(str, "[I]"); break;//LD Vx, [I] 
+        case 0xF065: sprintf(str, "[I]"); break;//LD Vx, [I]
         default: sprintf(str, "RMAC"); break;
     }
 }
@@ -286,7 +286,7 @@ uint8_t getOpOneValue(uint16_t opcode,
         case 0xF029: return 0;//LD F, Vx
         case 0xF033: return 0;//LD B,Vx
         case 0xF055: return 0;//LD [I], Vx
-        case 0xF065: return ((opcode & 0x0F00) >> 8);//LD Vx, [I] 
+        case 0xF065: return ((opcode & 0x0F00) >> 8);//LD Vx, [I]
         default: return -1 ;
     }
 }
@@ -318,9 +318,9 @@ uint8_t getOpTwoValue(uint16_t opcode,
         case 0x8007: return ((opcode & 0x00F0) >> 4); //SUBN Vx,Vy
         case 0x800E: return ((opcode & 0x00F0) >> 4); //SHL Vx {,Vy}
         case 0x9000: return ((opcode & 0x00F0) >> 4); //SNE Vx,Vy
-        case 0xA000: return ((opcode & 0x0FFF)); //LD I, addr
-        case 0xB000: return ((opcode & 0x0FFF));
-        case 0xC000: return ((opcode & 0x00FF)); //RND Vx, byte
+        case 0xA000: return (opcode & 0x0FFF); //LD I, addr
+        case 0xB000: return (opcode & 0x0FFF);
+        case 0xC000: return (opcode & 0x00FF); //RND Vx, byte
         case 0xD000: return 0; //DRW Vx,Vy, nibble
         case 0xE09E: return 0; //SKP Vx
         case 0xE0A1: return 0; //SKNP Vx
@@ -332,7 +332,7 @@ uint8_t getOpTwoValue(uint16_t opcode,
         case 0xF029: return ((opcode & 0x0F00) >> 8); //LD F, Vx
         case 0xF033: return ((opcode & 0x0F00) >> 8); //LD B,Vx
         case 0xF055: return ((opcode & 0x0F00) >> 8); //LD [I], Vx
-        case 0xF065: return 0;//LD Vx, [I] 
+        case 0xF065: return 0;//LD Vx, [I]
         default: return -1;
     }
 }

@@ -3,6 +3,7 @@
 
 #executable
 chip8disaster
+test_chip
 
 #ressources
 roms
