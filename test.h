@@ -12,5 +12,4 @@ typedef struct{
 void processTest(Test *t, char* strCond, bool condition);
 void formatTest(Test t[BUFFERTEST],bool passed, bool not_passed, uint32_t size);
 
-
 #endif

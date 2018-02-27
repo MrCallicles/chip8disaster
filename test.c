@@ -14,7 +14,8 @@
 #define DISPLAY_NOT_PASSED 2
 #define DISPLAY_STATISTICS 4
 
-void formatTest(Test t[BUFFERTEST],bool passed, bool not_passed, uint32_t size){
+void formatTest(Test t[BUFFERTEST],bool passed, bool not_passed, uint32_t size)
+{
     /*
      * Flag
      * Constante qui peut être égale à
@@ -165,12 +166,7 @@ int main(void)
     //getInstructionID
     processTest(&t[57],"getInstructionID(0x0444) = 2",  getInstructionID(0x0444, masque, id) == 2);
     processTest(&t[58],"getInstructionID(0x00E0) = 0",  getInstructionID(0x00E0, masque, id) == 0);
-    processTest(&t[59],"getInstructionID(0x00EE) = 1",  getInstructionID(0x00EE, masque, id) == 1);
-    processTest(&t[60],"getInstructionID(0x1222) = 3",  getInstructionID(0x1222, masque, id) == 3);
-    processTest(&t[61],"getInstructionID(0x2222) = 4",  getInstructionID(0x2222, masque, id) == 4);
-    processTest(&t[62],"getInstructionID(0x3222) = 5",  getInstructionID(0x3222, masque, id) == 5);
-    processTest(&t[63],"getInstructionID(0x4222) = 6",  getInstructionID(0x4222, masque, id) == 6);
-    processTest(&t[64],"getInstructionID(0x5220) = 7",  getInstructionID(0x5222, masque, id) == 7);
+    processTest(&t[59],"getInstructionID(0x00EE) = 1",  getInstructionID(0x00EE, masque, id) == 1); processTest(&t[60],"getInstructionID(0x1222) = 3",  getInstructionID(0x1222, masque, id) == 3); processTest(&t[61],"getInstructionID(0x2222) = 4",  getInstructionID(0x2222, masque, id) == 4); processTest(&t[62],"getInstructionID(0x3222) = 5",  getInstructionID(0x3222, masque, id) == 5); processTest(&t[63],"getInstructionID(0x4222) = 6",  getInstructionID(0x4222, masque, id) == 6); processTest(&t[64],"getInstructionID(0x5220) = 7",  getInstructionID(0x5222, masque, id) == 7);
     processTest(&t[65],"getInstructionID(0x6222) = 8",  getInstructionID(0x6222, masque, id) == 8);
     processTest(&t[66],"getInstructionID(0x7222) = 9",  getInstructionID(0x7222, masque, id) == 9);
     processTest(&t[67],"getInstructionID(0x8220) = 10", getInstructionID(0x8220, masque, id) == 10);
@@ -236,7 +232,82 @@ int main(void)
     processTest(&t[124],"getInstructionASM(0xFB55) = LD  ", strcmp(getInstructionASM(0xFB55, masque, id, instructionASM), "LD  ") == 0);
     processTest(&t[125],"getInstructionASM(0xFB65) = LD  ", strcmp(getInstructionASM(0xFB65, masque, id, instructionASM), "LD  ") == 0);
 
+    //getOpOneValue
+    processTest(&t[126],"getOpOneValue(0x0111) = 0x111", getOpOneValue(0x0111, masque, id) == 0x111);
+    processTest(&t[127],"getOpOneValue(0x00E0) = 0x0", getOpOneValue(0x00E0, masque, id) == 0x0);
+    processTest(&t[128],"getOpOneValue(0x00EE) = 0x0", getOpOneValue(0x00EE, masque, id) == 0x0);
+    processTest(&t[129],"getOpOneValue(0x1222) = 0x222", getOpOneValue(0x1222, masque, id) == 0x222);
+    processTest(&t[130],"getOpOneValue(0x2222) = 0x222", getOpOneValue(0x2222, masque, id) == 0x222);
+    processTest(&t[131],"getOpOneValue(0x3A55) = 0xA", getOpOneValue(0x3A55, masque, id) == 0xA);
+    processTest(&t[132],"getOpOneValue(0x4A55) = 0xA", getOpOneValue(0x4A55, masque, id) == 0xA);
+    processTest(&t[133],"getOpOneValue(0x5A50) = 0xA", getOpOneValue(0x5A50, masque, id) == 0xA);
+    processTest(&t[134],"getOpOneValue(0x6A50) = 0xA", getOpOneValue(0x6A50, masque, id) == 0xA);
+    processTest(&t[135],"getOpOneValue(0x7B44) = 0xB", getOpOneValue(0x7B44, masque, id) == 0xB);
+    processTest(&t[136],"getOpOneValue(0x8CA0) = 0xC", getOpOneValue(0x8CA0, masque, id) == 0xC);
+    processTest(&t[137],"getOpOneValue(0x89A1) = 0x9", getOpOneValue(0x89A1, masque, id) == 0x9);
+    processTest(&t[138],"getOpOneValue(0x89A2) = 0x9", getOpOneValue(0x89A2, masque, id) == 0x9);
+    processTest(&t[139],"getOpOneValue(0x89A3) = 0x9", getOpOneValue(0x89A3, masque, id) == 0x9);
+    processTest(&t[140],"getOpOneValue(0x89A4) = 0x9", getOpOneValue(0x89A4, masque, id) == 0x9);
+    processTest(&t[141],"getOpOneValue(0x89A5) = 0x9", getOpOneValue(0x89A5, masque, id) == 0x9);
+    processTest(&t[142],"getOpOneValue(0x89A6) = 0x9", getOpOneValue(0x89A6, masque, id) == 0x9);
+    processTest(&t[143],"getOpOneValue(0x89A7) = 0x9", getOpOneValue(0x89A7, masque, id) == 0x9);
+    processTest(&t[144],"getOpOneValue(0x89AE) = 0x9", getOpOneValue(0x89AE, masque, id) == 0x9);
+    processTest(&t[145],"getOpOneValue(0x95F0) = 0x5", getOpOneValue(0x95F0, masque, id) == 0x5);
+    processTest(&t[146],"getOpOneValue(0xA555) = 0x555", getOpOneValue(0xA555, masque, id) == 0x555);
+    processTest(&t[147],"getOpOneValue(0xB555) = 0x555", getOpOneValue(0xB555, masque, id) == 0x555);
+    processTest(&t[148],"getOpOneValue(0xCB77) = 0xB", getOpOneValue(0xCB77, masque, id) == 0xB);
+    processTest(&t[149],"getOpOneValue(0xD347) = 0x3", getOpOneValue(0xD347, masque, id) == 0x3);
+    processTest(&t[150],"getOpOneValue(0xEA9E) = 0xA", getOpOneValue(0xEA9E, masque, id) == 0xA);
+    processTest(&t[151],"getOpOneValue(0xEAA1) = 0xA", getOpOneValue(0xEAA1, masque, id) == 0xA);
+    processTest(&t[152],"getOpOneValue(0xF107) = 0x1", getOpOneValue(0xF107, masque, id) == 0x1);
+    processTest(&t[153],"getOpOneValue(0xF20A) = 0x2", getOpOneValue(0xF20A, masque, id) == 0x2);
+    processTest(&t[154],"getOpOneValue(0xF515) = 0x5", getOpOneValue(0xF515, masque, id) == 0x5);
+    processTest(&t[155],"getOpOneValue(0xF818) = 0x8", getOpOneValue(0xF818, masque, id) == 0x8);
+    processTest(&t[156],"getOpOneValue(0xFC1E) = 0xC", getOpOneValue(0xFC1E, masque, id) == 0xC);
+    processTest(&t[157],"getOpOneValue(0xFD29) = 0xD", getOpOneValue(0xFD29, masque, id) == 0xD);
+    processTest(&t[158],"getOpOneValue(0xFE33) = 0xE", getOpOneValue(0xFE33, masque, id) == 0xE);
+    processTest(&t[159],"getOpOneValue(0xFA55) = 0xA", getOpOneValue(0xfA55, masque, id) == 0xA);
+    processTest(&t[160],"getOpOneValue(0xF965) = 0x9", getOpOneValue(0xf965, masque, id) == 0x9);
+
+    //getOpTwoValue
+    processTest(&t[161],"getOpTwoValue(0x0111) = 0x111", getOpTwoValue(0x0111, masque, id) == 0x111);
+    processTest(&t[162],"getOpTwoValue(0x00E0) = 0x0", getOpTwoValue(0x00E0, masque, id) == 0x0);
+    processTest(&t[163],"getOpTwoValue(0x00EE) = 0x0", getOpTwoValue(0x00EE, masque, id) == 0x0);
+    processTest(&t[164],"getOpTwoValue(0x1222) = 0x222", getOpTwoValue(0x1222, masque, id) == 0x222);
+    processTest(&t[165],"getOpTwoValue(0x2222) = 0x222", getOpTwoValue(0x2222, masque, id) == 0x222);
+    processTest(&t[166],"getOpTwoValue(0x3A55) = 0x55",   getOpTwoValue(0x3A55, masque, id) == 0x55);
+    processTest(&t[167],"getOpTwoValue(0x4A55) = 0x55",   getOpTwoValue(0x4A55, masque, id) == 0x55);
+    processTest(&t[168],"getOpTwoValue(0x5A50) = 0x5",   getOpTwoValue(0x5A50, masque, id) == 0x5);
+    processTest(&t[169],"getOpTwoValue(0x6A50) = 0x50",   getOpTwoValue(0x6A50, masque, id) == 0x50);
+    processTest(&t[170],"getOpTwoValue(0x7B44) = 0x44",   getOpTwoValue(0x7B44, masque, id) == 0x44);
+    processTest(&t[171],"getOpTwoValue(0x8CA0) = 0xA",   getOpTwoValue(0x8CA0, masque, id) == 0xA);
+    processTest(&t[172],"getOpTwoValue(0x89A1) = 0xA",   getOpTwoValue(0x89A1, masque, id) == 0xA);
+    processTest(&t[173],"getOpTwoValue(0x89A2) = 0xA",   getOpTwoValue(0x89A2, masque, id) == 0xA);
+    processTest(&t[174],"getOpTwoValue(0x89A3) = 0xA",   getOpTwoValue(0x89A3, masque, id) == 0xA);
+    processTest(&t[175],"getOpTwoValue(0x89A4) = 0xA",   getOpTwoValue(0x89A4, masque, id) == 0xA);
+    processTest(&t[176],"getOpTwoValue(0x89A5) = 0xA",   getOpTwoValue(0x89A5, masque, id) == 0xA);
+    processTest(&t[177],"getOpTwoValue(0x89A6) = 0xA",   getOpTwoValue(0x89A6, masque, id) == 0xA);
+    processTest(&t[178],"getOpTwoValue(0x89A7) = 0xA",   getOpTwoValue(0x89A7, masque, id) == 0xA);
+    processTest(&t[179],"getOpTwoValue(0x89AE) = 0xA",   getOpTwoValue(0x89AE, masque, id) == 0xA);
+    processTest(&t[180],"getOpTwoValue(0x95F0) = 0xF",   getOpTwoValue(0x95F0, masque, id) == 0xF);
+    processTest(&t[181],"getOpTwoValue(0xA555) = 0x555",   getOpTwoValue(0xA555, masque, id) == 0x555);
+    processTest(&t[182],"getOpTwoValue(0xB555) = 0x555",   getOpTwoValue(0xB555, masque, id) == 0x555);
+    processTest(&t[183],"getOpTwoValue(0xCB77) = 0x77",   getOpTwoValue(0xCB77, masque, id) == 0x77);
+    processTest(&t[184],"getOpTwoValue(0xD347) = 0x47",   getOpTwoValue(0xD347, masque, id) == 0x47);
+    processTest(&t[185],"getOpTwoValue(0xEA9E) = 0x0",   getOpTwoValue(0xEA9E, masque, id) == 0x0);
+    processTest(&t[186],"getOpTwoValue(0xEAA1) = 0x0",   getOpTwoValue(0xEAA1, masque, id) == 0x0);
+    processTest(&t[187],"getOpTwoValue(0xF107) = 0x1",   getOpTwoValue(0xF107, masque, id) == 0x1);
+    processTest(&t[188],"getOpTwoValue(0xF20A) = 0x2",   getOpTwoValue(0xF20A, masque, id) == 0x2);
+    processTest(&t[189],"getOpTwoValue(0xF515) = 0x5",   getOpTwoValue(0xF515, masque, id) == 0x5);
+    processTest(&t[190],"getOpTwoValue(0xF818) = 0x8",   getOpTwoValue(0xF818, masque, id) == 0x8);
+    processTest(&t[191],"getOpTwoValue(0xFC1E) = 0xC",   getOpTwoValue(0xFC1E, masque, id) == 0xC);
+    processTest(&t[192],"getOpTwoValue(0xFD29) = 0xD",   getOpTwoValue(0xFD29, masque, id) == 0xD);
+    processTest(&t[193],"getOpTwoValue(0xFE33) = 0xE",   getOpTwoValue(0xFE33, masque, id) == 0xE);
+    processTest(&t[194],"getOpTwoValue(0xFA55) = 0xA",   getOpTwoValue(0xfA55, masque, id) == 0xA);
+    processTest(&t[195],"getOpTwoValue(0xF965) = 0x0",   getOpTwoValue(0xf965, masque, id) == 0x0);
+
+
     //loadRomCPU
-    formatTest(t,false,true, 126);
+    formatTest(t,false,true, 196);
     exit(EXIT_SUCCESS);
 }

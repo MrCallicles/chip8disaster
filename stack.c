@@ -247,14 +247,14 @@ void getOpTwo(uint16_t opcode,
     }
 }
 
-uint8_t getOpOneValue(uint16_t opcode,
+uint16_t getOpOneValue(uint16_t opcode,
               uint16_t masque[NBRINSTRUCTION],
               uint16_t id[NBRINSTRUCTION])
 {
     uint16_t op = getInstruction(opcode, masque, id);
     switch(op)
     {
-        case 0x0000: return (opcode & 0x0FFF); //SYS Addr
+        case 0x0000: return (opcode & 0xFFFF); //SYS Addr
         case 0x00E0: return 0; //CLS
         case 0x00EE: return 0; //RET
         case 0x1000: return (opcode & 0x0FFF); //JMP addr
@@ -274,37 +274,37 @@ uint8_t getOpOneValue(uint16_t opcode,
         case 0x8007: return ((opcode & 0x0F00) >> 8); //SUBN Vx,Vy
         case 0x800E: return ((opcode & 0x0F00) >> 8); //SHL Vx {,Vy}
         case 0x9000: return ((opcode & 0x0F00) >> 8); //SNE Vx,Vy
-        case 0xA000: return 0; //LD I, addr
-        case 0xB000: return 0;
+        case 0xA000: return ((opcode & 0x0FFF)); //LD I, addr
+        case 0xB000: return ((opcode & 0x0FFF)); //JP V0, addr
         case 0xC000: return ((opcode & 0x0F00) >> 8); //RND Vx, byte
         case 0xD000: return ((opcode & 0x0F00) >> 8); //DRW Vx,Vy, nibble
         case 0xE09E: return ((opcode & 0x0F00) >> 8); //SKP Vx
         case 0xE0A1: return ((opcode & 0x0F00) >> 8); //SKNP Vx
         case 0xF007: return ((opcode & 0x0F00) >> 8); //LD Vx, DT
         case 0xF00A: return ((opcode & 0x0F00) >> 8); //LD Vx, K
-        case 0xF015: return 0; //LD DT, Vx
+        case 0xF015: return ((opcode & 0x0F00) >> 8); //LD DT, Vx
         case 0xF018: return ((opcode & 0x0F00) >> 8); //LD Vx, K
-        case 0xF01E: return 0; //ADD I,Vx
-        case 0xF029: return 0;//LD F, Vx
-        case 0xF033: return 0;//LD B,Vx
-        case 0xF055: return 0;//LD [I], Vx
-        case 0xF065: return ((opcode & 0x0F00) >> 8);//LD Vx, [I]
+        case 0xF01E: return ((opcode & 0x0F00) >> 8); //ADD I,Vx
+        case 0xF029: return ((opcode & 0x0F00) >> 8); //LD F, Vx
+        case 0xF033: return ((opcode & 0x0F00) >> 8); //LD B,Vx
+        case 0xF055: return ((opcode & 0x0F00) >> 8); //LD [I], Vx
+        case 0xF065: return ((opcode & 0x0F00) >> 8); //LD Vx, [I]
         default: return -1 ;
     }
 }
 
-uint8_t getOpTwoValue(uint16_t opcode,
+uint16_t getOpTwoValue(uint16_t opcode,
               uint16_t masque[NBRINSTRUCTION],
               uint16_t id[NBRINSTRUCTION])
 {
     uint16_t op = getInstruction(opcode, masque, id);
     switch(op)
     {
-        case 0x0000: return 0; //SYS addr
+        case 0x0000: return (opcode & 0xFFFF); //SYS Addr
         case 0x00E0: return 0; //CLS
         case 0x00EE: return 0; //RET
-        case 0x1000: return 0; //JMP addr
-        case 0x2000: return 0; //CALL addr
+        case 0x1000: return (opcode & 0x0FFF); //JMP addr
+        case 0x2000: return (opcode & 0x0FFF); //CALL addr
         case 0x3000: return (opcode & 0x00FF); //SE Vx,kk
         case 0x4000: return (opcode & 0x00FF); //SNE Vx,kk
         case 0x5000: return ((opcode & 0x00F0) >> 4); //SE Vx,Vy
@@ -323,13 +323,13 @@ uint8_t getOpTwoValue(uint16_t opcode,
         case 0xA000: return (opcode & 0x0FFF); //LD I, addr
         case 0xB000: return (opcode & 0x0FFF);
         case 0xC000: return (opcode & 0x00FF); //RND Vx, byte
-        case 0xD000: return 0; //DRW Vx,Vy, nibble
+        case 0xD000: return (opcode & 0x00FF); //DRW Vx,Vy, nibble
         case 0xE09E: return 0; //SKP Vx
         case 0xE0A1: return 0; //SKNP Vx
-        case 0xF007: return 0; //LD Vx, DT
-        case 0xF00A: return 0; //LD Vx, K
+        case 0xF007: return ((opcode & 0x0F00) >> 8); //LD Vx, DT
+        case 0xF00A: return ((opcode & 0x0F00) >> 8); //LD Vx, K
         case 0xF015: return ((opcode & 0x0F00) >> 8); //LD DT, Vx
-        case 0xF018: return 0;//LD Vx, K
+        case 0xF018: return ((opcode & 0x0F00) >> 8);//LD Vx, K
         case 0xF01E: return ((opcode & 0x0F00) >> 8); //ADD I,Vx
         case 0xF029: return ((opcode & 0x0F00) >> 8); //LD F, Vx
         case 0xF033: return ((opcode & 0x0F00) >> 8); //LD B,Vx

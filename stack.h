@@ -32,10 +32,10 @@ void getOpTwo(uint16_t opcode,
               uint16_t masque[NBRINSTRUCTION],
               uint16_t id[NBRINSTRUCTION],
               char* str);
-uint8_t getOpOneValue(uint16_t opcode,
+uint16_t getOpOneValue(uint16_t opcode,
               uint16_t masque[NBRINSTRUCTION],
               uint16_t id[NBRINSTRUCTION]);
-uint8_t getOpTwoValue(uint16_t opcode,
+uint16_t getOpTwoValue(uint16_t opcode,
               uint16_t masque[NBRINSTRUCTION],
               uint16_t id[NBRINSTRUCTION]);
 char* getInstructionASM(uint16_t opcode,
