@@ -12,6 +12,7 @@
 
 //represent the CPU for
 //gdbASM
+
 typedef struct{
     uint8_t V[NBRREG]; //general registers
     uint16_t I; //Instruction pointer
@@ -23,13 +24,16 @@ typedef struct{
     uint8_t mem[MEMSIZE]; //memoire
 } Cpu;
 
-void decrementDelaySound(Cpu *cpu);
 
 void initCPU(Cpu *cpu);
+void decrementDelaySound(Cpu *cpu);
+
 void loadRomCPU(Cpu* cpu, char* pathRom, FILE* rom, uint32_t* size);
+
 void debugCPU(Cpu* cpu);
 void debugRegCPU(Cpu* cpu);
 void debugMemCPU(Cpu* cpu);
+
 void runCPU(Cpu *cpu,
             bool step,
             uint16_t masque[NBRINSTRUCTION],

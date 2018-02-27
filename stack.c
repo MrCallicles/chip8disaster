@@ -54,41 +54,41 @@ void initialiseMask_Id_ASM(uint16_t masque[NBRINSTRUCTION], uint16_t id[NBRINSTR
     //ne le fait que si init = 0
     static bool init = false;
     if(init == false){
-        masque[0]= 0x0000;  id[0]=0x0FFF;  instructionASM[0] = "SYS ";/* 0NNN */
-        masque[1]= 0xFFFF;  id[1]=0x00E0;  instructionASM[1] = "CLS ";/* 00E0 */
-        masque[2]= 0xFFFF;  id[2]=0x00EE;  instructionASM[2] = "RET ";/* 00EE */
+        masque[0]= 0xFFFF;  id[0]=0x00E0;  instructionASM[0] = "CLS ";/* 00E0 */
+        masque[1]= 0xFFFF;  id[1]=0x00EE;  instructionASM[1] = "RET ";/* 00EE */
+        masque[2]= 0xF000;  id[2]=0x0000;  instructionASM[2] = "SYS ";/* 0NNN */
         masque[3]= 0xF000;  id[3]=0x1000;  instructionASM[3] = "JP  ";/* 1NNN */
         masque[4]= 0xF000;  id[4]=0x2000;  instructionASM[4] = "CALL";/* 2NNN */
         masque[5]= 0xF000;  id[5]=0x3000;  instructionASM[5] = "SE  ";/* 3XNN */
         masque[6]= 0xF000;  id[6]=0x4000;  instructionASM[6] = "SNE ";/* 4XNN */
-        masque[7]= 0xF00F;  id[7]=0x5000;  instructionASM[7] = "SE  ";/* 5XY0 */
+        masque[7]= 0xF000;  id[7]=0x5000;  instructionASM[7] = "SE  ";/* 5XY0 */
         masque[8]= 0xF000;  id[8]=0x6000;  instructionASM[8] = "LD  ";/* 6XNN */
         masque[9]= 0xF000;  id[9]=0x7000;  instructionASM[9] = "ADD ";/* 7XNN */
-        masque[10]= 0xF00F; id[10]=0x8000; instructionASM[10] = "LD  ";/* 8XY0 */
-        masque[11]= 0xF00F; id[11]=0x8001; instructionASM[11] = "OR  ";/* 8XY1 */
-        masque[12]= 0xF00F; id[12]=0x8002; instructionASM[12] = "AND ";/* 8XY2 */
-        masque[13]= 0xF00F; id[13]=0x8003; instructionASM[13] = "XOR ";/* BXY3 */
-        masque[14]= 0xF00F; id[14]=0x8004; instructionASM[14] = "ADD ";/* 8XY4 */
-        masque[15]= 0xF00F; id[15]=0x8005; instructionASM[15] = "SUB ";/* 8XY5 */
-        masque[16]= 0xF00F; id[16]=0x8006; instructionASM[16] = "SHR ";/* 8XY6 */
-        masque[17]= 0xF00F; id[17]=0x8007; instructionASM[17] = "SUBN";/* 8XY7 */
-        masque[18]= 0xF00F; id[18]=0x800E; instructionASM[18] = "SHL ";/* 8XYE */
-        masque[19]= 0xF00F; id[19]=0x9000; instructionASM[19] = "SNE ";/* 9XY0 */
-        masque[20]= 0xF000; id[20]=0xA000; instructionASM[20] = "LD  ";/* ANNN */
-        masque[21]= 0xF000; id[21]=0xB000; instructionASM[21] = "JP  ";/* BNNN */
-        masque[22]= 0xF000; id[22]=0xC000; instructionASM[22] = "RND ";/* CXNN */
-        masque[23]= 0xF000; id[23]=0xD000; instructionASM[23] = "DRW ";/* DXYN */
-        masque[24]= 0xF0FF; id[24]=0xE09E; instructionASM[24] = "SKP ";/* EX9E */
-        masque[25]= 0xF0FF; id[25]=0xE0A1; instructionASM[25] = "SKNP";/* EXA1 */
-        masque[26]= 0xF0FF; id[26]=0xF007; instructionASM[26] = "LD  ";/* FX07 */
-        masque[27]= 0xF0FF; id[27]=0xF00A; instructionASM[27] = "LD  ";/* FX0A */
-        masque[28]= 0xF0FF; id[28]=0xF015; instructionASM[28] = "LD  ";/* FX15 */
-        masque[29]= 0xF0FF; id[29]=0xF018; instructionASM[29] = "LD  ";/* FX18 */
-        masque[30]= 0xF0FF; id[30]=0xF01E; instructionASM[30] = "ADD ";/* FX1E */
-        masque[31]= 0xF0FF; id[31]=0xF029; instructionASM[31] = "LD  ";/* FX29 */
-        masque[32]= 0xF0FF; id[32]=0xF033; instructionASM[32] = "LD  ";/* FX33 */
-        masque[33]= 0xF0FF; id[33]=0xF055; instructionASM[33] = "LD  ";/* FX55 */
-        masque[34]= 0xF0FF; id[34]=0xF065; instructionASM[34] = "LD  ";/* FX65 */
+        masque[10]= 0xF00F; id[10]=0x8000; instructionASM[10] = "LD  "; /* 8XY0 */
+        masque[11]= 0xF00F; id[11]=0x8001; instructionASM[11] = "OR  "; /* 8XY1 */
+        masque[12]= 0xF00F; id[12]=0x8002; instructionASM[12] = "AND "; /* 8XY2 */
+        masque[13]= 0xF00F; id[13]=0x8003; instructionASM[13] = "XOR "; /* BXY3 */
+        masque[14]= 0xF00F; id[14]=0x8004; instructionASM[14] = "ADD "; /* 8XY4 */
+        masque[15]= 0xF00F; id[15]=0x8005; instructionASM[15] = "SUB "; /* 8XY5 */
+        masque[16]= 0xF00F; id[16]=0x8006; instructionASM[16] = "SHR "; /* 8XY6 */
+        masque[17]= 0xF00F; id[17]=0x8007; instructionASM[17] = "SUBN"; /* 8XY7 */
+        masque[18]= 0xF00F; id[18]=0x800E; instructionASM[18] = "SHL "; /* 8XYE */
+        masque[19]= 0xF00F; id[19]=0x9000; instructionASM[19] = "SNE "; /* 9XY0 */
+        masque[20]= 0xF000; id[20]=0xA000; instructionASM[20] = "LD  "; /* ANNN */
+        masque[21]= 0xF000; id[21]=0xB000; instructionASM[21] = "JP  "; /* BNNN */
+        masque[22]= 0xF000; id[22]=0xC000; instructionASM[22] = "RND "; /* CXNN */
+        masque[23]= 0xF000; id[23]=0xD000; instructionASM[23] = "DRW "; /* DXYN */
+        masque[24]= 0xF0FF; id[24]=0xE09E; instructionASM[24] = "SKP "; /* EX9E */
+        masque[25]= 0xF0FF; id[25]=0xE0A1; instructionASM[25] = "SKNP"; /* EXA1 */
+        masque[26]= 0xF0FF; id[26]=0xF007; instructionASM[26] = "LD  "; /* FX07 */
+        masque[27]= 0xF0FF; id[27]=0xF00A; instructionASM[27] = "LD  "; /* FX0A */
+        masque[28]= 0xF0FF; id[28]=0xF015; instructionASM[28] = "LD  "; /* FX15 */
+        masque[29]= 0xF0FF; id[29]=0xF018; instructionASM[29] = "LD  "; /* FX18 */
+        masque[30]= 0xF0FF; id[30]=0xF01E; instructionASM[30] = "ADD "; /* FX1E */
+        masque[31]= 0xF0FF; id[31]=0xF029; instructionASM[31] = "LD  "; /* FX29 */
+        masque[32]= 0xF0FF; id[32]=0xF033; instructionASM[32] = "LD  "; /* FX33 */
+        masque[33]= 0xF0FF; id[33]=0xF055; instructionASM[33] = "LD  "; /* FX55 */
+        masque[34]= 0xF0FF; id[34]=0xF065; instructionASM[34] = "LD  "; /* FX65 */
         init = true;
     }
 }
@@ -105,7 +105,9 @@ uint16_t getInstruction(uint16_t opcode,
     for(uint8_t i = 0; i < NBRINSTRUCTION; i++)
     {
         tmp = opcode & masque[i];
-        if(tmp == id[i]) break;
+        if(tmp == id[i]){
+            break;
+        }
     }
     return tmp;
 }
