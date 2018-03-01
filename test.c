@@ -313,13 +313,36 @@ int main(void)
 
     //
     Cpu *cpuExecOpCode = malloc(sizeof(Cpu));
+
     initCPU(cpuExecOpCode);
-    execOpCodeCPU(0x0000, 0x111, 0x111);
+    execOpCodeCPU(cpuExecOpCode, 0x0000, 0x111, 0x111);
     processTest(&t[196], "execOpCodeCPU(0x000, 0x111, 0x111)", true);
+
     initCPU(cpuExecOpCode);
-    execOpCodeCPU(0x1000, 0x111, 0x111);
+    execOpCodeCPU(cpuExecOpCode, 0x00E0, 0x0, 0x0);
+    processTest(&t[197], "execOpCodeCPU(0x00E0, 0x0, 0x0) (CLS)", false);
+
+    initCPU(cpuExecOpCode);
+    execOpCodeCPU(cpuExecOpCode, 0x00EE, 0x0, 0x0);
+    processTest(&t[198], "execOpCodeCPU(0x00EE, 0x0, 0x0) (RET)", false);
+
+    initCPU(cpuExecOpCode);
+    execOpCodeCPU(cpuExecOpCode, 0x1000, 0x100, 0x100);
+    processTest(&t[199], "execOpCodeCPU(0x1000, 0x150, 0x150) (JP)", cpuExecOpCode->PC == 0x100);
+
+    initCPU(cpuExecOpCode);
+    execOpCodeCPU(cpuExecOpCode, 0x2000, 0x100, 0x100);
+    processTest(&t[200], "execOpCodeCPU(0x2000, 0x150, 0x150) (CALL)", false);
+
+    initCPU(cpuExecOpCode);
+    execOpCodeCPU(cpuExecOpCode, 0x3000, 0x100, 0x100);
+    processTest(&t[201], "execOpCodeCPU(0x3000, 0x100, 0x100) (SE)", cpuExecOpCode->PC == 0x202);
+
+    initCPU(cpuExecOpCode);
+    execOpCodeCPU(cpuExecOpCode, 0x3000, 0x105, 0x100);
+    processTest(&t[203], "execOpCodeCPU(0x3000, 0x105, 0x100) (SE)", cpuExecOpCode->PC == 0x200);
 
     //loadRomCPU
-    formatTest(t,false,true, 197);
+    formatTest(t,false,true, 204);
     exit(EXIT_SUCCESS);
 }
