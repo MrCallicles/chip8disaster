@@ -32,5 +32,5 @@ Support only few commands today :
 - run or r : run the debugger (in step mode)
 - step : go to the next instruction
 - reg or register : show general registers
-- cpu : show registers excepts general registers
+- cpu : show registers except general registers
 - mem : show memory content

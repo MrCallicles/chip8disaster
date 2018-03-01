@@ -33,6 +33,7 @@ void loadRomCPU(Cpu* cpu, char* pathRom, FILE* rom, uint32_t* size);
 void debugCPU(Cpu* cpu);
 void debugRegCPU(Cpu* cpu);
 void debugMemCPU(Cpu* cpu);
+void debugStackCPU(Cpu* cpu);
 
 void runCPU(Cpu *cpu,
             bool step,

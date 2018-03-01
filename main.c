@@ -94,6 +94,10 @@ void gdbASM(Cpu *cpu, uint16_t masque[NBRINSTRUCTION],
         {
             debugMemCPU(cpu);
         }
+        else if(!strcmp(command, "stack") || !strcmp(command, "nest"))
+        {
+            debugStackCPU(cpu);
+        }
     }
 }
 

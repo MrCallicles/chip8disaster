@@ -72,6 +72,14 @@ void debugMemCPU(Cpu* cpu)
     }
 }
 
+void debugStackCPU(Cpu* cpu)
+{
+    for(uint8_t i = 0; i < NBRNEST; i++)
+    {
+        printf("Stack[%x] : 0x%x\n",i, cpu->stack[i]);
+    }
+}
+
 void runCPU(Cpu *cpu,
             bool step,
             uint16_t masque[NBRINSTRUCTION],
@@ -134,15 +142,15 @@ void execOpCodeCPU(Cpu *cpu,
 {
     switch(instruction){
         case 0:
-            //SYS
-            break;
-        case 1:
             //CLS
             break;
-        case 2:
+        case 1:
             //RET
-            cpu->PC = cpu->stack[cpu->SP];
+            cpu->PC = cpu->stack[cpu->SP - 1];
             cpu->SP -= 1;
+            break;
+        case 2:
+            //SYS
             break;
         case 3:
             //JP
@@ -150,9 +158,10 @@ void execOpCodeCPU(Cpu *cpu,
             break;
         case 4:
             //CALL
-            cpu->PC += 1;
+            //cpu->PC += 2;
             cpu->stack[cpu->SP] = cpu->PC;
             cpu->PC = opTwo;
+            cpu->SP += 1;
             break;
         case 5:
             //SE
