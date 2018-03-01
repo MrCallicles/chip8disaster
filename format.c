@@ -75,10 +75,10 @@ void formatASM(uint16_t stackOpcode[STACK/2],
                uint32_t size)
 {
     char str[16];
-    for(uint32_t i = 0;i < size/2; i++)
+    for(uint32_t i = 0, j = 0x200;i < size/2; i++, j+=2)
     {
         printf("\x1B[1m");
-        printf("<0x%2x> ", i);
+        printf("<0x%3x> ", j);
         printf("\x1B[0m");
         printf("\x1B[36m");
         printf("%4x", stackOpcode[i]); //affiche l'hexadecimal

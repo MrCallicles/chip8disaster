@@ -111,8 +111,14 @@ void execCPU(Cpu *cpu,
     instruction = getInstruction(cpu->I, masque, id);
     getOpOne(cpu->I, masque, id, opOneString);
     getOpTwo(cpu->I, masque, id, opTwoString);
-    printf("0x%x > instruction : %x, opOne : %s, opTwo : %s\n",
-           cpu->I ,instruction, opOneString, opTwoString);
+    printf("0x%3x-> "
+           "0x%x = "
+           "instruction : %x, "
+           "opOne : %s, "
+           "opTwo : %s\n",
+           cpu->PC - 2, cpu->I ,
+           instruction, opOneString,
+           opTwoString);
     instruction = getInstructionID(cpu->I, masque, id);
     opOne = getOpOneValue(cpu->I, masque, id);
     opTwo = getOpTwoValue(cpu->I, masque, id);
