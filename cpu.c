@@ -196,30 +196,17 @@ void execOpCodeCPU(Cpu *cpu,
             cpu->V[opOne] = cpu->V[opOne] ^ cpu->V[opTwo];
             break;
         case 14:
-            //ADD Vx Vy. Pas fini
-            if(cpu->V[opOne] + cpu->V[opTwo] > 255)
-            {
-                uint16_t tmp = 0;
-                tmp = cpu->V[opOne] + cpu->V[opTwo];
-                cpu->V[opOne] = tmp << 1;
-                cpu->V[0xF] = 1;
-            }
-            else
-            {
-                cpu->V[opOne] = cpu->V[opOne] + cpu->V[opTwo];
-                cpu->V[0xF] = 0;
-            }
+            //ADD Vx Vy
+            if((cpu->V[opOne] + cpu->V[opTwo]) > 255) cpu->V[0xF] = 0x1;
+            cpu->V[opOne] = cpu->V[opOne] + cpu->V[opTwo];
             break;
         case 15:
-            //SUB Vx Vy. Pas fini
-            if(cpu->V[opOne] > cpu->V[opTwo])
-            {
-                cpu->V[0xF] = 1;
+            //SUB Vx Vy
+            if(((size_t)cpu->V[opOne] - (size_t)cpu->V[opTwo]) < 0){
+                printf("Test\n");
+                cpu->V[0xF] = 0x1;
             }
-            else
-            {
-                cpu->V[0xF] = 0;
-            }
+            cpu->V[opOne] = cpu->V[opOne] - cpu->V[opTwo];
             break;
         case 16:
             //SHR

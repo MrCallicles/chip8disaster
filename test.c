@@ -390,9 +390,89 @@ int main(void)
 
     initCPU(cpuExecOpCode);
     execOpCodeCPU(cpuExecOpCode, 8, 1, 0xFF);
-    processTest(&t[209], "execOpCodeCPU(8, V[1], 0xFF) (LD Vx,kk)", cpuExecOpCode->V[1] == 0xFF);
+    processTest(&t[209], "execOpCodeCPU(8, V[1], 0xFF) (LD Vx,NN)", cpuExecOpCode->V[1] == 0xFF);
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0x5;
+    execOpCodeCPU(cpuExecOpCode, 9, 1, 0x5);
+    processTest(&t[210], "execOpCodeCPU(9, V[1], 0xFF) (ADD Vx,NN)", cpuExecOpCode->V[1] == (0x5 + 0x5));
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0x5;
+    cpuExecOpCode->V[5] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 10, 3, 5);
+    processTest(&t[211], "execOpCodeCPU(10, V[3], V[5]) (LD Vx,Vy)", cpuExecOpCode->V[3] == 0xD0);
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xEA;
+    cpuExecOpCode->V[5] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 11, 3, 5);
+    processTest(&t[212], "execOpCodeCPU(11, V[3], V[5]) (OR Vx, Vy)", (cpuExecOpCode->V[3] == 0xEA) |
+           (cpuExecOpCode->V[5] == 0xD0));
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xEA;
+    cpuExecOpCode->V[5] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 12, 3, 5);
+    processTest(&t[213], "execOpCodeCPU(12, V[3], V[5]) (AND Vx, Vy)",
+                (cpuExecOpCode->V[3] == (0xEA & 0xD0)));
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xEA;
+    cpuExecOpCode->V[5] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 13, 3, 5);
+    processTest(&t[214], "execOpCodeCPU(13, V[3], V[5]) (XOR Vx, Vy)", cpuExecOpCode->V[3] == (0xEA ^ 0xD0));
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0x0A;
+    cpuExecOpCode->V[5] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
+    processTest(&t[215],
+                "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == (0x0A + 0xD0)) && (cpuExecOpCode->V[0xF] == 0));
+
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xFF;
+    cpuExecOpCode->V[5] = 0x05;
+    execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
+    processTest(&t[216],
+                "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == 0x04) && (cpuExecOpCode->V[0xF] == 1));
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xF0;
+    cpuExecOpCode->V[5] = 0x0F;
+    execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
+    processTest(&t[217],
+                "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == 0xFF) && (cpuExecOpCode->V[0xF] == 0));
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xF0;
+    cpuExecOpCode->V[5] = 0x0F;
+    execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
+    processTest(&t[218],
+                "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == 0xFF) && (cpuExecOpCode->V[0xF] == 0));
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xF0;
+    cpuExecOpCode->V[5] = 0x0F;
+    execOpCodeCPU(cpuExecOpCode, 15, 3, 5);
+    processTest(&t[219],
+                "execOpCodeCPU(15 , V[3], V[5]) (SUB Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == (0xF0 - 0x0F)) && (cpuExecOpCode->V[0xF] == 0));
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xA;
+    cpuExecOpCode->V[5] = 0xF;
+    execOpCodeCPU(cpuExecOpCode, 15, 3, 5);
+    processTest(&t[220],
+                "execOpCodeCPU(15 , V[3], V[5]) (SUB Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == (0xA - 0xF)) && (cpuExecOpCode->V[0xF] == 1));
 
     //loadRomCPU
-    formatTest(t,false,true, 210);
+    formatTest(t,false,true, 221);
     exit(EXIT_SUCCESS);
 }
