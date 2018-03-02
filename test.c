@@ -315,34 +315,84 @@ int main(void)
     Cpu *cpuExecOpCode = malloc(sizeof(Cpu));
 
     initCPU(cpuExecOpCode);
-    execOpCodeCPU(cpuExecOpCode, 0x0000, 0x111, 0x111);
-    processTest(&t[196], "execOpCodeCPU(0x000, 0x111, 0x111)", true);
+    execOpCodeCPU(cpuExecOpCode, 0, 0x0, 0x0);
+    processTest(&t[196], "execOpCodeCPU(0, 0x111, 0x111) (CLS)",false);
 
     initCPU(cpuExecOpCode);
-    execOpCodeCPU(cpuExecOpCode, 0x00E0, 0x0, 0x0);
-    processTest(&t[197], "execOpCodeCPU(0x00E0, 0x0, 0x0) (CLS)", false);
+    cpuExecOpCode->stack[0] = 0x200;
+    cpuExecOpCode->SP = 1;
+    execOpCodeCPU(cpuExecOpCode, 1, 0x0, 0x0);
+    //RET
+    processTest(&t[197], "execOpCodeCPU(1, 0x0, 0x0) (RET)", cpuExecOpCode->PC == 0x200 && cpuExecOpCode->SP == 0);
 
     initCPU(cpuExecOpCode);
-    execOpCodeCPU(cpuExecOpCode, 0x00EE, 0x0, 0x0);
-    processTest(&t[198], "execOpCodeCPU(0x00EE, 0x0, 0x0) (RET)", false);
+    execOpCodeCPU(cpuExecOpCode, 2, 0x0, 0x0);
+    //not implemented SYS
+    processTest(&t[198], "execOpCodeCPU(2, 0x0, 0x0) (SYS)", true);
+
 
     initCPU(cpuExecOpCode);
-    execOpCodeCPU(cpuExecOpCode, 0x1000, 0x100, 0x100);
-    processTest(&t[199], "execOpCodeCPU(0x1000, 0x150, 0x150) (JP)", cpuExecOpCode->PC == 0x100);
+    execOpCodeCPU(cpuExecOpCode, 3, 0x200, 0x200);
+    processTest(&t[199], "execOpCodeCPU(3, 0x200, 0x200) (JMP)",
+                cpuExecOpCode->PC == 0x200);
 
     initCPU(cpuExecOpCode);
-    execOpCodeCPU(cpuExecOpCode, 0x2000, 0x100, 0x100);
-    processTest(&t[200], "execOpCodeCPU(0x2000, 0x150, 0x150) (CALL)", false);
+    execOpCodeCPU(cpuExecOpCode, 4, 0x400, 0x400);
+    processTest(&t[200], "execOpCodeCPU(0x2000, 0x150, 0x150) (CALL)",
+                cpuExecOpCode->stack[0] == 0 ||
+                cpuExecOpCode->PC == 0x400 ||
+                cpuExecOpCode->SP == 1
+            );
 
     initCPU(cpuExecOpCode);
-    execOpCodeCPU(cpuExecOpCode, 0x3000, 0x100, 0x100);
-    processTest(&t[201], "execOpCodeCPU(0x3000, 0x100, 0x100) (SE)", cpuExecOpCode->PC == 0x202);
+    cpuExecOpCode->V[1] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 5, 1, 0xF0);
+    processTest(&t[201], "execOpCodeCPU(5, V[1], 0xF0) (SE egal)", cpuExecOpCode->PC == 0x202);
 
     initCPU(cpuExecOpCode);
-    execOpCodeCPU(cpuExecOpCode, 0x3000, 0x105, 0x100);
-    processTest(&t[203], "execOpCodeCPU(0x3000, 0x105, 0x100) (SE)", cpuExecOpCode->PC == 0x200);
+    cpuExecOpCode->V[1] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 5, 1, 0xF0);
+    execOpCodeCPU(cpuExecOpCode, 5, 1, 0xF0);
+    processTest(&t[202], "execOpCodeCPU(5, V[1], 0xF0) (SE egal)", cpuExecOpCode->PC == 0x204);
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 5, 1, 0xC0);
+    processTest(&t[203], "execOpCodeCPU(5, V[1], 0xC0) (SE not egal)", cpuExecOpCode->PC == 0x200);
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 6, 1, 0xF0);
+    processTest(&t[204], "execOpCodeCPU(6, V[1], 0xC0) (SNE egal)", cpuExecOpCode->PC == 0x200);
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 6, 1, 0xD0);
+    processTest(&t[205], "execOpCodeCPU(6, V[1], 0xC0) (SNE not egal)", cpuExecOpCode->PC == 0x202);
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    cpuExecOpCode->V[0xB] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 7, 1, 0xb);
+    processTest(&t[206], "execOpCodeCPU(7, V[1], V[B]) (SE Vx,Vy egal)", cpuExecOpCode->PC == 0x202);
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    cpuExecOpCode->V[0xB] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 7, 1, 0xb);
+    processTest(&t[207], "execOpCodeCPU(7, V[1], V[1]) (SE Vx,Vy not egal)", cpuExecOpCode->PC == 0x200);
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    cpuExecOpCode->V[0xB] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 7, 1, 0xb);
+    processTest(&t[208], "execOpCodeCPU(7, V[1], V[B]) (SE Vx,Vy not egal)", cpuExecOpCode->PC == 0x200);
+
+    initCPU(cpuExecOpCode);
+    execOpCodeCPU(cpuExecOpCode, 8, 1, 0xFF);
+    processTest(&t[209], "execOpCodeCPU(8, V[1], 0xFF) (LD Vx,kk)", cpuExecOpCode->V[1] == 0xFF);
 
     //loadRomCPU
-    formatTest(t,false,true, 204);
+    formatTest(t,false,true, 210);
     exit(EXIT_SUCCESS);
 }

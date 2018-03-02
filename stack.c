@@ -94,8 +94,7 @@ void initialiseMask_Id_ASM(uint16_t masque[NBRINSTRUCTION], uint16_t id[NBRINSTR
 }
 
 /*
- * A remplacer par getInstructionID
- * qui renvoi i au lieu de str...
+ * A remplacer par getInstructionID qui renvoi i au lieu de str...
  */
 uint16_t getInstruction(uint16_t opcode,
                     uint16_t masque[NBRINSTRUCTION],

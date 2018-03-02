@@ -142,18 +142,18 @@ void execOpCodeCPU(Cpu *cpu,
 {
     switch(instruction){
         case 0:
-            //CLS
+            //CLS 0x00E0
             break;
         case 1:
-            //RET
+            //RET 0x00EE
             cpu->PC = cpu->stack[cpu->SP - 1];
             cpu->SP -= 1;
             break;
         case 2:
-            //SYS
+            //SYS 0x0000
             break;
         case 3:
-            //JP
+            //JP 0x1000
             cpu->PC = opOne;
             break;
         case 4:
@@ -164,16 +164,16 @@ void execOpCodeCPU(Cpu *cpu,
             cpu->SP += 1;
             break;
         case 5:
-            //SE
-            if(opOne == opTwo) cpu->PC += 2;
+            //SE Vx,kk
+            if(cpu->V[opOne] == opTwo) cpu->PC += 2;
             break;
         case 6:
-            //SNE
-            if(opOne != opTwo) cpu->PC += 2;
+            //SNE Vx, kk
+            if(cpu->V[opOne] != opTwo) cpu->PC += 2;
             break;
         case 7:
             //SE Vx, Vy
-            if(opOne == opTwo) cpu->PC += 2;
+            if(cpu->V[opOne] == cpu->V[opTwo]) cpu->PC += 2;
             break;
         case 8:
             //LD Vx, byte

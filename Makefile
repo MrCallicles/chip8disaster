@@ -10,7 +10,7 @@ test: format.o cpu.o stack.o init.o test.c
 	$(CC) test.c format.o cpu.o stack.o init.o $(CFLAGS) -o $(TESTNAME)
 
 clean:
-	rm *.o $(NAME)
+	rm *.o $(NAME) $(TESTNAME)
 
 $(NAME): main.c format.o cpu.o stack.o init.o
 	$(CC) main.c format.o cpu.o stack.o init.o $(CFLAGS) -o $(NAME)

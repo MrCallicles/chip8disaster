@@ -33,4 +33,5 @@ Support only few commands today :
 - step : go to the next instruction
 - reg or register : show general registers
 - cpu : show registers except general registers
-- mem : show memory content
+- stack : show stack (nested call) content
+
