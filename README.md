@@ -2,7 +2,7 @@
 
 My first attempt to make a Chip8 emulator, disassembler and debugger.
 
-From now, only the disassembler work properly but basically.
+For now, only the disassembler works, in a simple but effective way.
 
 # Compile
 
