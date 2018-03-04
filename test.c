@@ -63,248 +63,6 @@ void processTest(Test *t, char* strCond, bool condition)
     else strcpy(t->strCondition, strCond);
 }
 
-// int main(void)
-// {
-//     //getOpOneValue
-//     processTest(&t[126],"getOpOneValue(0x0111) = 0x111", getOpOneValue(0x0111, masque, id) == 0x111);
-//     processTest(&t[127],"getOpOneValue(0x00E0) = 0x0", getOpOneValue(0x00E0, masque, id) == 0x0);
-//     processTest(&t[128],"getOpOneValue(0x00EE) = 0x0", getOpOneValue(0x00EE, masque, id) == 0x0);
-//     processTest(&t[129],"getOpOneValue(0x1222) = 0x222", getOpOneValue(0x1222, masque, id) == 0x222);
-//     processTest(&t[130],"getOpOneValue(0x2222) = 0x222", getOpOneValue(0x2222, masque, id) == 0x222);
-//     processTest(&t[131],"getOpOneValue(0x3A55) = 0xA", getOpOneValue(0x3A55, masque, id) == 0xA);
-//     processTest(&t[132],"getOpOneValue(0x4A55) = 0xA", getOpOneValue(0x4A55, masque, id) == 0xA);
-//     processTest(&t[133],"getOpOneValue(0x5A50) = 0xA", getOpOneValue(0x5A50, masque, id) == 0xA);
-//     processTest(&t[134],"getOpOneValue(0x6A50) = 0xA", getOpOneValue(0x6A50, masque, id) == 0xA);
-//     processTest(&t[135],"getOpOneValue(0x7B44) = 0xB", getOpOneValue(0x7B44, masque, id) == 0xB);
-//     processTest(&t[136],"getOpOneValue(0x8CA0) = 0xC", getOpOneValue(0x8CA0, masque, id) == 0xC);
-//     processTest(&t[137],"getOpOneValue(0x89A1) = 0x9", getOpOneValue(0x89A1, masque, id) == 0x9);
-//     processTest(&t[138],"getOpOneValue(0x89A2) = 0x9", getOpOneValue(0x89A2, masque, id) == 0x9);
-//     processTest(&t[139],"getOpOneValue(0x89A3) = 0x9", getOpOneValue(0x89A3, masque, id) == 0x9);
-//     processTest(&t[140],"getOpOneValue(0x89A4) = 0x9", getOpOneValue(0x89A4, masque, id) == 0x9);
-//     processTest(&t[141],"getOpOneValue(0x89A5) = 0x9", getOpOneValue(0x89A5, masque, id) == 0x9);
-//     processTest(&t[142],"getOpOneValue(0x89A6) = 0x9", getOpOneValue(0x89A6, masque, id) == 0x9);
-//     processTest(&t[143],"getOpOneValue(0x89A7) = 0x9", getOpOneValue(0x89A7, masque, id) == 0x9);
-//     processTest(&t[144],"getOpOneValue(0x89AE) = 0x9", getOpOneValue(0x89AE, masque, id) == 0x9);
-//     processTest(&t[145],"getOpOneValue(0x95F0) = 0x5", getOpOneValue(0x95F0, masque, id) == 0x5);
-//     processTest(&t[146],"getOpOneValue(0xA555) = 0x555", getOpOneValue(0xA555, masque, id) == 0x555);
-//     processTest(&t[147],"getOpOneValue(0xB555) = 0x555", getOpOneValue(0xB555, masque, id) == 0x555);
-//     processTest(&t[148],"getOpOneValue(0xCB77) = 0xB", getOpOneValue(0xCB77, masque, id) == 0xB);
-//     processTest(&t[149],"getOpOneValue(0xD347) = 0x3", getOpOneValue(0xD347, masque, id) == 0x3);
-//     processTest(&t[150],"getOpOneValue(0xEA9E) = 0xA", getOpOneValue(0xEA9E, masque, id) == 0xA);
-//     processTest(&t[151],"getOpOneValue(0xEAA1) = 0xA", getOpOneValue(0xEAA1, masque, id) == 0xA);
-//     processTest(&t[152],"getOpOneValue(0xF107) = 0x1", getOpOneValue(0xF107, masque, id) == 0x1);
-//     processTest(&t[153],"getOpOneValue(0xF20A) = 0x2", getOpOneValue(0xF20A, masque, id) == 0x2);
-//     processTest(&t[154],"getOpOneValue(0xF515) = 0x5", getOpOneValue(0xF515, masque, id) == 0x5);
-//     processTest(&t[155],"getOpOneValue(0xF818) = 0x8", getOpOneValue(0xF818, masque, id) == 0x8);
-//     processTest(&t[156],"getOpOneValue(0xFC1E) = 0xC", getOpOneValue(0xFC1E, masque, id) == 0xC);
-//     processTest(&t[157],"getOpOneValue(0xFD29) = 0xD", getOpOneValue(0xFD29, masque, id) == 0xD);
-//     processTest(&t[158],"getOpOneValue(0xFE33) = 0xE", getOpOneValue(0xFE33, masque, id) == 0xE);
-//     processTest(&t[159],"getOpOneValue(0xFA55) = 0xA", getOpOneValue(0xfA55, masque, id) == 0xA);
-//     processTest(&t[160],"getOpOneValue(0xF965) = 0x9", getOpOneValue(0xf965, masque, id) == 0x9);
-//
-//     //getOpTwoValue
-//     processTest(&t[161],"getOpTwoValue(0x0111) = 0x111", getOpTwoValue(0x0111, masque, id) == 0x111);
-//     processTest(&t[162],"getOpTwoValue(0x00E0) = 0x0",   getOpTwoValue(0x00E0, masque, id) == 0x0);
-//     processTest(&t[163],"getOpTwoValue(0x00EE) = 0x0",   getOpTwoValue(0x00EE, masque, id) == 0x0);
-//     processTest(&t[164],"getOpTwoValue(0x1222) = 0x222", getOpTwoValue(0x1222, masque, id) == 0x222);
-//     processTest(&t[165],"getOpTwoValue(0x2222) = 0x222", getOpTwoValue(0x2222, masque, id) == 0x222);
-//     processTest(&t[166],"getOpTwoValue(0x3A55) = 0x55",  getOpTwoValue(0x3A55, masque, id) == 0x55);
-//     processTest(&t[167],"getOpTwoValue(0x4A55) = 0x55",  getOpTwoValue(0x4A55, masque, id) == 0x55);
-//     processTest(&t[168],"getOpTwoValue(0x5A50) = 0x5",   getOpTwoValue(0x5A50, masque, id) == 0x5);
-//     processTest(&t[169],"getOpTwoValue(0x6A50) = 0x50",  getOpTwoValue(0x6A50, masque, id) == 0x50);
-//     processTest(&t[170],"getOpTwoValue(0x7B44) = 0x44",  getOpTwoValue(0x7B44, masque, id) == 0x44);
-//     processTest(&t[171],"getOpTwoValue(0x8CA0) = 0xA",   getOpTwoValue(0x8CA0, masque, id) == 0xA);
-//     processTest(&t[172],"getOpTwoValue(0x89A1) = 0xA",   getOpTwoValue(0x89A1, masque, id) == 0xA);
-//     processTest(&t[173],"getOpTwoValue(0x89A2) = 0xA",   getOpTwoValue(0x89A2, masque, id) == 0xA);
-//     processTest(&t[174],"getOpTwoValue(0x89A3) = 0xA",   getOpTwoValue(0x89A3, masque, id) == 0xA);
-//     processTest(&t[175],"getOpTwoValue(0x89A4) = 0xA",   getOpTwoValue(0x89A4, masque, id) == 0xA);
-//     processTest(&t[176],"getOpTwoValue(0x89A5) = 0xA",   getOpTwoValue(0x89A5, masque, id) == 0xA);
-//     processTest(&t[177],"getOpTwoValue(0x89A6) = 0xA",   getOpTwoValue(0x89A6, masque, id) == 0xA);
-//     processTest(&t[178],"getOpTwoValue(0x89A7) = 0xA",   getOpTwoValue(0x89A7, masque, id) == 0xA);
-//     processTest(&t[179],"getOpTwoValue(0x89AE) = 0xA",   getOpTwoValue(0x89AE, masque, id) == 0xA);
-//     processTest(&t[180],"getOpTwoValue(0x95F0) = 0xF",   getOpTwoValue(0x95F0, masque, id) == 0xF);
-//     processTest(&t[181],"getOpTwoValue(0xA555) = 0x555", getOpTwoValue(0xA555, masque, id) == 0x555);
-//     processTest(&t[182],"getOpTwoValue(0xB555) = 0x555", getOpTwoValue(0xB555, masque, id) == 0x555);
-//     processTest(&t[183],"getOpTwoValue(0xCB77) = 0x77",  getOpTwoValue(0xCB77, masque, id) == 0x77);
-//     processTest(&t[184],"getOpTwoValue(0xD347) = 0x47",  getOpTwoValue(0xD347, masque, id) == 0x47);
-//     processTest(&t[185],"getOpTwoValue(0xEA9E) = 0x0",   getOpTwoValue(0xEA9E, masque, id) == 0x0);
-//     processTest(&t[186],"getOpTwoValue(0xEAA1) = 0x0",   getOpTwoValue(0xEAA1, masque, id) == 0x0);
-//     processTest(&t[187],"getOpTwoValue(0xF107) = 0x1",   getOpTwoValue(0xF107, masque, id) == 0x1);
-//     processTest(&t[188],"getOpTwoValue(0xF20A) = 0x2",   getOpTwoValue(0xF20A, masque, id) == 0x2);
-//     processTest(&t[189],"getOpTwoValue(0xF515) = 0x5",   getOpTwoValue(0xF515, masque, id) == 0x5);
-//     processTest(&t[190],"getOpTwoValue(0xF818) = 0x8",   getOpTwoValue(0xF818, masque, id) == 0x8);
-//     processTest(&t[191],"getOpTwoValue(0xFC1E) = 0xC",   getOpTwoValue(0xFC1E, masque, id) == 0xC);
-//     processTest(&t[192],"getOpTwoValue(0xFD29) = 0xD",   getOpTwoValue(0xFD29, masque, id) == 0xD);
-//     processTest(&t[193],"getOpTwoValue(0xFE33) = 0xE",   getOpTwoValue(0xFE33, masque, id) == 0xE);
-//     processTest(&t[194],"getOpTwoValue(0xFA55) = 0xA",   getOpTwoValue(0xfA55, masque, id) == 0xA);
-//     processTest(&t[195],"getOpTwoValue(0xF965) = 0x0",   getOpTwoValue(0xf965, masque, id) == 0x0);
-//
-//     //
-//     Cpu *cpuExecOpCode = malloc(sizeof(Cpu));
-//
-//     initCPU(cpuExecOpCode);
-//     execOpCodeCPU(cpuExecOpCode, 0, 0x0, 0x0);
-//     processTest(&t[196], "execOpCodeCPU(0, 0x111, 0x111) (CLS)",false);
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->stack[0] = 0x200;
-//     cpuExecOpCode->SP = 1;
-//     execOpCodeCPU(cpuExecOpCode, 1, 0x0, 0x0);
-//     //RET
-//     processTest(&t[197], "execOpCodeCPU(1, 0x0, 0x0) (RET)", cpuExecOpCode->PC == 0x200 && cpuExecOpCode->SP == 0);
-//
-//     initCPU(cpuExecOpCode);
-//     execOpCodeCPU(cpuExecOpCode, 2, 0x0, 0x0);
-//     //not implemented SYS
-//     processTest(&t[198], "execOpCodeCPU(2, 0x0, 0x0) (SYS)", true);
-//
-//
-//     initCPU(cpuExecOpCode);
-//     execOpCodeCPU(cpuExecOpCode, 3, 0x200, 0x200);
-//     processTest(&t[199], "execOpCodeCPU(3, 0x200, 0x200) (JMP)",
-//                 cpuExecOpCode->PC == 0x200);
-//
-//     initCPU(cpuExecOpCode);
-//     execOpCodeCPU(cpuExecOpCode, 4, 0x400, 0x400);
-//     processTest(&t[200], "execOpCodeCPU(0x2000, 0x150, 0x150) (CALL)",
-//                 cpuExecOpCode->stack[0] == 0 ||
-//                 cpuExecOpCode->PC == 0x400 ||
-//                 cpuExecOpCode->SP == 1
-//             );
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[1] = 0xF0;
-//     execOpCodeCPU(cpuExecOpCode, 5, 1, 0xF0);
-//     processTest(&t[201], "execOpCodeCPU(5, V[1], 0xF0) (SE egal)", cpuExecOpCode->PC == 0x202);
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[1] = 0xF0;
-//     execOpCodeCPU(cpuExecOpCode, 5, 1, 0xF0);
-//     execOpCodeCPU(cpuExecOpCode, 5, 1, 0xF0);
-//     processTest(&t[202], "execOpCodeCPU(5, V[1], 0xF0) (SE egal)", cpuExecOpCode->PC == 0x204);
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[1] = 0xF0;
-//     execOpCodeCPU(cpuExecOpCode, 5, 1, 0xC0);
-//     processTest(&t[203], "execOpCodeCPU(5, V[1], 0xC0) (SE not egal)", cpuExecOpCode->PC == 0x200);
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[1] = 0xF0;
-//     execOpCodeCPU(cpuExecOpCode, 6, 1, 0xF0);
-//     processTest(&t[204], "execOpCodeCPU(6, V[1], 0xC0) (SNE egal)", cpuExecOpCode->PC == 0x200);
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[1] = 0xF0;
-//     execOpCodeCPU(cpuExecOpCode, 6, 1, 0xD0);
-//     processTest(&t[205], "execOpCodeCPU(6, V[1], 0xC0) (SNE not egal)", cpuExecOpCode->PC == 0x202);
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[1] = 0xF0;
-//     cpuExecOpCode->V[0xB] = 0xF0;
-//     execOpCodeCPU(cpuExecOpCode, 7, 1, 0xb);
-//     processTest(&t[206], "execOpCodeCPU(7, V[1], V[B]) (SE Vx,Vy egal)", cpuExecOpCode->PC == 0x202);
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[1] = 0xF0;
-//     cpuExecOpCode->V[0xB] = 0xD0;
-//     execOpCodeCPU(cpuExecOpCode, 7, 1, 0xb);
-//     processTest(&t[207], "execOpCodeCPU(7, V[1], V[1]) (SE Vx,Vy not egal)", cpuExecOpCode->PC == 0x200);
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[1] = 0xF0;
-//     cpuExecOpCode->V[0xB] = 0xD0;
-//     execOpCodeCPU(cpuExecOpCode, 7, 1, 0xb);
-//     processTest(&t[208], "execOpCodeCPU(7, V[1], V[B]) (SE Vx,Vy not egal)", cpuExecOpCode->PC == 0x200);
-//
-//     initCPU(cpuExecOpCode);
-//     execOpCodeCPU(cpuExecOpCode, 8, 1, 0xFF);
-//     processTest(&t[209], "execOpCodeCPU(8, V[1], 0xFF) (LD Vx,NN)", cpuExecOpCode->V[1] == 0xFF);
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[1] = 0x5;
-//     execOpCodeCPU(cpuExecOpCode, 9, 1, 0x5);
-//     processTest(&t[210], "execOpCodeCPU(9, V[1], 0xFF) (ADD Vx,NN)", cpuExecOpCode->V[1] == (0x5 + 0x5));
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[3] = 0x5;
-//     cpuExecOpCode->V[5] = 0xD0;
-//     execOpCodeCPU(cpuExecOpCode, 10, 3, 5);
-//     processTest(&t[211], "execOpCodeCPU(10, V[3], V[5]) (LD Vx,Vy)", cpuExecOpCode->V[3] == 0xD0);
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[3] = 0xEA;
-//     cpuExecOpCode->V[5] = 0xD0;
-//     execOpCodeCPU(cpuExecOpCode, 11, 3, 5);
-//     processTest(&t[212], "execOpCodeCPU(11, V[3], V[5]) (OR Vx, Vy)", (cpuExecOpCode->V[3] == 0xEA) |
-//            (cpuExecOpCode->V[5] == 0xD0));
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[3] = 0xEA;
-//     cpuExecOpCode->V[5] = 0xD0;
-//     execOpCodeCPU(cpuExecOpCode, 12, 3, 5);
-//     processTest(&t[213], "execOpCodeCPU(12, V[3], V[5]) (AND Vx, Vy)",
-//                 (cpuExecOpCode->V[3] == (0xEA & 0xD0)));
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[3] = 0xEA;
-//     cpuExecOpCode->V[5] = 0xD0;
-//     execOpCodeCPU(cpuExecOpCode, 13, 3, 5);
-//     processTest(&t[214], "execOpCodeCPU(13, V[3], V[5]) (XOR Vx, Vy)", cpuExecOpCode->V[3] == (0xEA ^ 0xD0));
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[3] = 0x0A;
-//     cpuExecOpCode->V[5] = 0xD0;
-//     execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
-//     processTest(&t[215],
-//                 "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
-//                 (cpuExecOpCode->V[3] == (0x0A + 0xD0)) && (cpuExecOpCode->V[0xF] == 0));
-//
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[3] = 0xFF;
-//     cpuExecOpCode->V[5] = 0x05;
-//     execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
-//     processTest(&t[216],
-//                 "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
-//                 (cpuExecOpCode->V[3] == 0x04) && (cpuExecOpCode->V[0xF] == 1));
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[3] = 0xF0;
-//     cpuExecOpCode->V[5] = 0x0F;
-//     execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
-//     processTest(&t[217],
-//                 "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
-//                 (cpuExecOpCode->V[3] == 0xFF) && (cpuExecOpCode->V[0xF] == 0));
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[3] = 0xF0;
-//     cpuExecOpCode->V[5] = 0x0F;
-//     execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
-//     processTest(&t[218],
-//                 "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
-//                 (cpuExecOpCode->V[3] == 0xFF) && (cpuExecOpCode->V[0xF] == 0));
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[3] = 0xF0;
-//     cpuExecOpCode->V[5] = 0x0F;
-//     execOpCodeCPU(cpuExecOpCode, 15, 3, 5);
-//     processTest(&t[219],
-//                 "execOpCodeCPU(15 , V[3], V[5]) (SUB Vx, Vy with carry)",
-//                 (cpuExecOpCode->V[3] == (0xF0 - 0x0F)) && (cpuExecOpCode->V[0xF] == 0));
-//
-//     initCPU(cpuExecOpCode);
-//     cpuExecOpCode->V[3] = 0xA;
-//     cpuExecOpCode->V[5] = 0xF;
-//     execOpCodeCPU(cpuExecOpCode, 15, 3, 5);
-//     processTest(&t[220],
-//                 "execOpCodeCPU(15 , V[3], V[5]) (SUB Vx, Vy with carry)",
-//                 (cpuExecOpCode->V[3] == (0xA - 0xF)) && (cpuExecOpCode->V[0xF] == 1));
-//
-//     //loadRomCPU
-//     formatTest(t,false,true, 221);
-//     exit(EXIT_SUCCESS);
-// }
-
 int main(void){
     Test* t = NULL;
     uint32_t size = 0;
@@ -354,7 +112,34 @@ int main(void){
     }
     testGetInstructionASM(t, size);
 
-    formatTest(t,true,true,size);
+    size += NBRTESTGETOPONEVALUE;
+    t = realloc(t, sizeof(Test)* size);
+    if (t == NULL)
+    {
+        fprintf(stderr, "ERREUR");
+        exit(EXIT_FAILURE);
+    }
+    testGetOpOneValue(t, size);
+
+    size += NBRTESTGETOPTWOVALUE;
+    t = realloc(t, sizeof(Test)* size);
+    if (t == NULL)
+    {
+        fprintf(stderr, "ERREUR");
+        exit(EXIT_FAILURE);
+    }
+    testGetOpTwoValue(t, size);
+
+    size += NBRTESTEXECOPCODECPU;
+    t = realloc(t, sizeof(Test)* size);
+    if (t == NULL)
+    {
+        fprintf(stderr, "ERREUR");
+        exit(EXIT_FAILURE);
+    }
+    testCPUExecOpCode(t, size);
+
+    formatTest(t,false,true,size);
 
     free(t);
     exit(EXIT_SUCCESS);
@@ -575,4 +360,326 @@ uint32_t testGetInstructionASM(Test *t, uint32_t offset)
     processTest(t + offset + 34,"getInstructionASM(0xFB65) = LD  ", strcmp(getInstructionASM(0xFB65, masque, id, instructionASM), "LD  ") == 0);
 
     return NBRTESTGETINSTRUCTIONASM;
+}
+
+uint32_t testGetOpOneValue(Test *t, uint32_t offset)
+{
+    offset -= NBRTESTGETOPONEVALUE;
+    uint8_t stack[STACK];
+    uint16_t stackOpcode[STACK/2];
+    uint16_t instructionStack[STACK/2];
+    uint16_t masque[NBRINSTRUCTION];
+    uint16_t id[NBRINSTRUCTION];
+    char* instructionASM[NBRINSTRUCTION];
+    FILE* rom = NULL;
+    uint32_t size = 0;
+    init(stack, stackOpcode, instructionStack,
+         masque, id, instructionASM, "roms/PONG",
+         rom, &size);
+
+    processTest(t + offset + 0,"getOpOneValue(0x0111) = 0x111", getOpOneValue(0x0111, masque, id) == 0x111);
+    processTest(t + offset + 1,"getOpOneValue(0x00E0) = 0x0", getOpOneValue(0x00E0, masque, id) == 0x0);
+    processTest(t + offset + 2,"getOpOneValue(0x00EE) = 0x0", getOpOneValue(0x00EE, masque, id) == 0x0);
+    processTest(t + offset + 3,"getOpOneValue(0x1222) = 0x222", getOpOneValue(0x1222, masque, id) == 0x222);
+    processTest(t + offset + 4,"getOpOneValue(0x2222) = 0x222", getOpOneValue(0x2222, masque, id) == 0x222);
+    processTest(t + offset + 5,"getOpOneValue(0x3A55) = 0xA", getOpOneValue(0x3A55, masque, id) == 0xA);
+    processTest(t + offset + 6,"getOpOneValue(0x4A55) = 0xA", getOpOneValue(0x4A55, masque, id) == 0xA);
+    processTest(t + offset + 7,"getOpOneValue(0x5A50) = 0xA", getOpOneValue(0x5A50, masque, id) == 0xA);
+    processTest(t + offset + 8,"getOpOneValue(0x6A50) = 0xA", getOpOneValue(0x6A50, masque, id) == 0xA);
+    processTest(t + offset + 9,"getOpOneValue(0x7B44) = 0xB", getOpOneValue(0x7B44, masque, id) == 0xB);
+    processTest(t + offset + 10,"getOpOneValue(0x8CA0) = 0xC", getOpOneValue(0x8CA0, masque, id) == 0xC);
+    processTest(t + offset + 11,"getOpOneValue(0x89A1) = 0x9", getOpOneValue(0x89A1, masque, id) == 0x9);
+    processTest(t + offset + 12,"getOpOneValue(0x89A2) = 0x9", getOpOneValue(0x89A2, masque, id) == 0x9);
+    processTest(t + offset + 13,"getOpOneValue(0x89A3) = 0x9", getOpOneValue(0x89A3, masque, id) == 0x9);
+    processTest(t + offset + 14,"getOpOneValue(0x89A4) = 0x9", getOpOneValue(0x89A4, masque, id) == 0x9);
+    processTest(t + offset + 15,"getOpOneValue(0x89A5) = 0x9", getOpOneValue(0x89A5, masque, id) == 0x9);
+    processTest(t + offset + 16,"getOpOneValue(0x89A6) = 0x9", getOpOneValue(0x89A6, masque, id) == 0x9);
+    processTest(t + offset + 17,"getOpOneValue(0x89A7) = 0x9", getOpOneValue(0x89A7, masque, id) == 0x9);
+    processTest(t + offset + 18,"getOpOneValue(0x89AE) = 0x9", getOpOneValue(0x89AE, masque, id) == 0x9);
+    processTest(t + offset + 19,"getOpOneValue(0x95F0) = 0x5", getOpOneValue(0x95F0, masque, id) == 0x5);
+    processTest(t + offset + 20,"getOpOneValue(0xA555) = 0x555", getOpOneValue(0xA555, masque, id) == 0x555);
+    processTest(t + offset + 21,"getOpOneValue(0xB555) = 0x555", getOpOneValue(0xB555, masque, id) == 0x555);
+    processTest(t + offset + 22,"getOpOneValue(0xCB77) = 0xB", getOpOneValue(0xCB77, masque, id) == 0xB);
+    processTest(t + offset + 23,"getOpOneValue(0xD347) = 0x3", getOpOneValue(0xD347, masque, id) == 0x3);
+    processTest(t + offset + 24,"getOpOneValue(0xEA9E) = 0xA", getOpOneValue(0xEA9E, masque, id) == 0xA);
+    processTest(t + offset + 25,"getOpOneValue(0xEAA1) = 0xA", getOpOneValue(0xEAA1, masque, id) == 0xA);
+    processTest(t + offset + 26,"getOpOneValue(0xF107) = 0x1", getOpOneValue(0xF107, masque, id) == 0x1);
+    processTest(t + offset + 27,"getOpOneValue(0xF20A) = 0x2", getOpOneValue(0xF20A, masque, id) == 0x2);
+    processTest(t + offset + 28,"getOpOneValue(0xF515) = 0x5", getOpOneValue(0xF515, masque, id) == 0x5);
+    processTest(t + offset + 29,"getOpOneValue(0xF818) = 0x8", getOpOneValue(0xF818, masque, id) == 0x8);
+    processTest(t + offset + 30,"getOpOneValue(0xFC1E) = 0xC", getOpOneValue(0xFC1E, masque, id) == 0xC);
+    processTest(t + offset + 31,"getOpOneValue(0xFD29) = 0xD", getOpOneValue(0xFD29, masque, id) == 0xD);
+    processTest(t + offset + 32,"getOpOneValue(0xFE33) = 0xE", getOpOneValue(0xFE33, masque, id) == 0xE);
+    processTest(t + offset + 33,"getOpOneValue(0xFA55) = 0xA", getOpOneValue(0xfA55, masque, id) == 0xA);
+    processTest(t + offset + 34,"getOpOneValue(0xF965) = 0x9", getOpOneValue(0xf965, masque, id) == 0x9);
+    return NBRTESTGETOPONEVALUE;
+}
+
+uint32_t testGetOpTwoValue(Test *t, uint32_t offset)
+{
+    offset -= NBRTESTGETOPTWOVALUE;
+    uint8_t stack[STACK];
+    uint16_t stackOpcode[STACK/2];
+    uint16_t instructionStack[STACK/2];
+    uint16_t masque[NBRINSTRUCTION];
+    uint16_t id[NBRINSTRUCTION];
+    char* instructionASM[NBRINSTRUCTION];
+    FILE* rom = NULL;
+    uint32_t size = 0;
+    init(stack, stackOpcode, instructionStack,
+         masque, id, instructionASM, "roms/PONG",
+         rom, &size);
+
+    processTest(t + offset + 0,"getOpTwoValue(0x0111) = 0x111", getOpTwoValue(0x0111, masque, id) == 0x111);
+    processTest(t + offset + 1,"getOpTwoValue(0x00E0) = 0x0",   getOpTwoValue(0x00E0, masque, id) == 0x0);
+    processTest(t + offset + 2,"getOpTwoValue(0x00EE) = 0x0",   getOpTwoValue(0x00EE, masque, id) == 0x0);
+    processTest(t + offset + 3,"getOpTwoValue(0x1222) = 0x222", getOpTwoValue(0x1222, masque, id) == 0x222);
+    processTest(t + offset + 4,"getOpTwoValue(0x2222) = 0x222", getOpTwoValue(0x2222, masque, id) == 0x222);
+    processTest(t + offset + 5,"getOpTwoValue(0x3A55) = 0x55",  getOpTwoValue(0x3A55, masque, id) == 0x55);
+    processTest(t + offset + 6,"getOpTwoValue(0x4A55) = 0x55",  getOpTwoValue(0x4A55, masque, id) == 0x55);
+    processTest(t + offset + 7,"getOpTwoValue(0x5A50) = 0x5",   getOpTwoValue(0x5A50, masque, id) == 0x5);
+    processTest(t + offset + 8,"getOpTwoValue(0x6A50) = 0x50",  getOpTwoValue(0x6A50, masque, id) == 0x50);
+    processTest(t + offset + 9,"getOpTwoValue(0x7B44) = 0x44",  getOpTwoValue(0x7B44, masque, id) == 0x44);
+    processTest(t + offset + 10,"getOpTwoValue(0x8CA0) = 0xA",   getOpTwoValue(0x8CA0, masque, id) == 0xA);
+    processTest(t + offset + 11,"getOpTwoValue(0x89A1) = 0xA",   getOpTwoValue(0x89A1, masque, id) == 0xA);
+    processTest(t + offset + 12,"getOpTwoValue(0x89A2) = 0xA",   getOpTwoValue(0x89A2, masque, id) == 0xA);
+    processTest(t + offset + 13,"getOpTwoValue(0x89A3) = 0xA",   getOpTwoValue(0x89A3, masque, id) == 0xA);
+    processTest(t + offset + 14,"getOpTwoValue(0x89A4) = 0xA",   getOpTwoValue(0x89A4, masque, id) == 0xA);
+    processTest(t + offset + 15,"getOpTwoValue(0x89A5) = 0xA",   getOpTwoValue(0x89A5, masque, id) == 0xA);
+    processTest(t + offset + 16,"getOpTwoValue(0x89A6) = 0xA",   getOpTwoValue(0x89A6, masque, id) == 0xA);
+    processTest(t + offset + 17,"getOpTwoValue(0x89A7) = 0xA",   getOpTwoValue(0x89A7, masque, id) == 0xA);
+    processTest(t + offset + 18,"getOpTwoValue(0x89AE) = 0xA",   getOpTwoValue(0x89AE, masque, id) == 0xA);
+    processTest(t + offset + 19,"getOpTwoValue(0x95F0) = 0xF",   getOpTwoValue(0x95F0, masque, id) == 0xF);
+    processTest(t + offset + 20,"getOpTwoValue(0xA555) = 0x555", getOpTwoValue(0xA555, masque, id) == 0x555);
+    processTest(t + offset + 21,"getOpTwoValue(0xB555) = 0x555", getOpTwoValue(0xB555, masque, id) == 0x555);
+    processTest(t + offset + 22,"getOpTwoValue(0xCB77) = 0x77",  getOpTwoValue(0xCB77, masque, id) == 0x77);
+    processTest(t + offset + 23,"getOpTwoValue(0xD347) = 0x47",  getOpTwoValue(0xD347, masque, id) == 0x47);
+    processTest(t + offset + 24,"getOpTwoValue(0xEA9E) = 0x0",   getOpTwoValue(0xEA9E, masque, id) == 0x0);
+    processTest(t + offset + 25,"getOpTwoValue(0xEAA1) = 0x0",   getOpTwoValue(0xEAA1, masque, id) == 0x0);
+    processTest(t + offset + 26,"getOpTwoValue(0xF107) = 0x1",   getOpTwoValue(0xF107, masque, id) == 0x1);
+    processTest(t + offset + 27,"getOpTwoValue(0xF20A) = 0x2",   getOpTwoValue(0xF20A, masque, id) == 0x2);
+    processTest(t + offset + 28,"getOpTwoValue(0xF515) = 0x5",   getOpTwoValue(0xF515, masque, id) == 0x5);
+    processTest(t + offset + 29,"getOpTwoValue(0xF818) = 0x8",   getOpTwoValue(0xF818, masque, id) == 0x8);
+    processTest(t + offset + 30,"getOpTwoValue(0xFC1E) = 0xC",   getOpTwoValue(0xFC1E, masque, id) == 0xC);
+    processTest(t + offset + 31,"getOpTwoValue(0xFD29) = 0xD",   getOpTwoValue(0xFD29, masque, id) == 0xD);
+    processTest(t + offset + 32,"getOpTwoValue(0xFE33) = 0xE",   getOpTwoValue(0xFE33, masque, id) == 0xE);
+    processTest(t + offset + 33,"getOpTwoValue(0xFA55) = 0xA",   getOpTwoValue(0xfA55, masque, id) == 0xA);
+    processTest(t + offset + 34,"getOpTwoValue(0xF965) = 0x0",   getOpTwoValue(0xf965, masque, id) == 0x0);
+    return NBRTESTGETOPTWOVALUE;
+}
+
+uint32_t testCPUExecOpCode(Test *t, uint32_t offset)
+{
+    offset -= NBRTESTEXECOPCODECPU;
+    Cpu *cpuExecOpCode = malloc(sizeof(Cpu));
+    uint32_t i = 0;
+
+    initCPU(cpuExecOpCode);
+    execOpCodeCPU(cpuExecOpCode, 0, 0x0, 0x0);
+    processTest(t + offset + i, "execOpCodeCPU(0, 0x111, 0x111) (CLS)",false);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->stack[0] = 0x200;
+    cpuExecOpCode->SP = 1;
+    execOpCodeCPU(cpuExecOpCode, 1, 0x0, 0x0);
+    //RET
+    processTest(t + offset + i, "execOpCodeCPU(1, 0x0, 0x0) (RET)", cpuExecOpCode->PC == 0x200 && cpuExecOpCode->SP == 0);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    execOpCodeCPU(cpuExecOpCode, 2, 0x0, 0x0);
+    //not implemented SYS
+    processTest(t + offset + i, "execOpCodeCPU(2, 0x0, 0x0) (SYS)", true);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    execOpCodeCPU(cpuExecOpCode, 3, 0x200, 0x200);
+    processTest(t + offset + i, "execOpCodeCPU(3, 0x200, 0x200) (JMP)",
+                cpuExecOpCode->PC == 0x200);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    execOpCodeCPU(cpuExecOpCode, 4, 0x400, 0x400);
+    processTest(t + offset + i, "execOpCodeCPU(0x2000, 0x150, 0x150) (CALL)",
+                cpuExecOpCode->stack[0] == 0 ||
+                cpuExecOpCode->PC == 0x400 ||
+                cpuExecOpCode->SP == 1
+            );
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 5, 1, 0xF0);
+    processTest(t + offset + i, "execOpCodeCPU(5, V[1], 0xF0) (SE egal)", cpuExecOpCode->PC == 0x202);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 5, 1, 0xF0);
+    execOpCodeCPU(cpuExecOpCode, 5, 1, 0xF0);
+    processTest(t + offset + i, "execOpCodeCPU(5, V[1], 0xF0) (SE egal)", cpuExecOpCode->PC == 0x204);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 5, 1, 0xC0);
+    processTest(t + offset + i, "execOpCodeCPU(5, V[1], 0xC0) (SE not egal)", cpuExecOpCode->PC == 0x200);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 6, 1, 0xF0);
+    processTest(t + offset + i, "execOpCodeCPU(6, V[1], 0xC0) (SNE egal)", cpuExecOpCode->PC == 0x200);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 6, 1, 0xD0);
+    processTest(t + offset + i, "execOpCodeCPU(6, V[1], 0xC0) (SNE not egal)", cpuExecOpCode->PC == 0x202);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    cpuExecOpCode->V[0xB] = 0xF0;
+    execOpCodeCPU(cpuExecOpCode, 7, 1, 0xb);
+    processTest(t + offset + i, "execOpCodeCPU(7, V[1], V[B]) (SE Vx,Vy egal)", cpuExecOpCode->PC == 0x202);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    cpuExecOpCode->V[0xB] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 7, 1, 0xb);
+    processTest(t + offset + i, "execOpCodeCPU(7, V[1], V[1]) (SE Vx,Vy not egal)", cpuExecOpCode->PC == 0x200);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0xF0;
+    cpuExecOpCode->V[0xB] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 7, 1, 0xb);
+    processTest(t + offset + i, "execOpCodeCPU(7, V[1], V[B]) (SE Vx,Vy not egal)", cpuExecOpCode->PC == 0x200);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    execOpCodeCPU(cpuExecOpCode, 8, 1, 0xFF);
+    processTest(t + offset + i, "execOpCodeCPU(8, V[1], 0xFF) (LD Vx,NN)", cpuExecOpCode->V[1] == 0xFF);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[1] = 0x5;
+    execOpCodeCPU(cpuExecOpCode, 9, 1, 0x5);
+    processTest(t + offset +i, "execOpCodeCPU(9, V[1], 0xFF) (ADD Vx,NN)", cpuExecOpCode->V[1] == (0x5 + 0x5));
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0x5;
+    cpuExecOpCode->V[5] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 10, 3, 5);
+    processTest(t + offset + i, "execOpCodeCPU(10, V[3], V[5]) (LD Vx,Vy)", cpuExecOpCode->V[3] == 0xD0);
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xEA;
+    cpuExecOpCode->V[5] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 11, 3, 5);
+    processTest(t + offset + i, "execOpCodeCPU(11, V[3], V[5]) (OR Vx, Vy)", (cpuExecOpCode->V[3] == 0xEA) |
+           (cpuExecOpCode->V[5] == 0xD0));
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xEA;
+    cpuExecOpCode->V[5] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 12, 3, 5);
+    processTest(t + offset + i, "execOpCodeCPU(12, V[3], V[5]) (AND Vx, Vy)",
+                (cpuExecOpCode->V[3] == (0xEA & 0xD0)));
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xEA;
+    cpuExecOpCode->V[5] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 13, 3, 5);
+    processTest(t + offset + i, "execOpCodeCPU(13, V[3], V[5]) (XOR Vx, Vy)", cpuExecOpCode->V[3] == (0xEA ^ 0xD0));
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0x0A;
+    cpuExecOpCode->V[5] = 0xD0;
+    execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
+    processTest(t + offset + i,
+                "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == (0x0A + 0xD0)) && (cpuExecOpCode->V[0xF] == 0));
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xFF;
+    cpuExecOpCode->V[5] = 0x05;
+    execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
+    processTest(t + offset + i,
+                "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == 0x04) && (cpuExecOpCode->V[0xF] == 1));
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xF0;
+    cpuExecOpCode->V[5] = 0x0F;
+    execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
+    processTest(t + offset + i,
+                "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == 0xFF) && (cpuExecOpCode->V[0xF] == 0));
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xF0;
+    cpuExecOpCode->V[5] = 0x0F;
+    execOpCodeCPU(cpuExecOpCode, 14, 3, 5);
+    processTest(t + offset + i,
+                "execOpCodeCPU(14 , V[3], V[5]) (ADD Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == 0xFF) && (cpuExecOpCode->V[0xF] == 0));
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xF0;
+    cpuExecOpCode->V[5] = 0x0F;
+    execOpCodeCPU(cpuExecOpCode, 15, 3, 5);
+    processTest(t + offset + i,
+                "execOpCodeCPU(15 , V[3], V[5]) (SUB Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == (0xF0 - 0x0F)) && (cpuExecOpCode->V[0xF] == 0));
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xA;
+    cpuExecOpCode->V[5] = 0xF;
+    execOpCodeCPU(cpuExecOpCode, 15, 3, 5);
+    processTest(t + offset + i,
+                "execOpCodeCPU(15 , V[3], V[5]) (SUB Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == (0xA - 0xF)) && (cpuExecOpCode->V[0xF] == 1));
+
+    i++;
+
+    free(cpuExecOpCode);
+    return NBRTESTEXECOPCODECPU;
 }
