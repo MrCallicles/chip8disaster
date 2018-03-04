@@ -145,6 +145,27 @@ int main(void){
     exit(EXIT_SUCCESS);
 }
 
+// int main(void)
+// {
+//     Test* t = NULL;
+//     t = malloc(0);
+//     uint32_t sizeTestArray = 0;
+//
+//     initTest(t, &sizeTestArray, NBRTESTINITCPU, testInitCPU);
+//     initTest(t, &sizeTestArray, NBRTESTDECREMENTDELAYSOUND, testDecrementDelaySound);
+//     initTest(t, &sizeTestArray, NBRTESTGETINSTRUCTION, testGetInstruction);
+//     initTest(t, &sizeTestArray, NBRTESTGETINSTRUCTIONID, testGetInstructionID);
+//     //initTest(t, &sizeTestArray, NBRTESTGETINSTRUCTIONASM, testGetInstructionASM);
+//     //initTest(t, &sizeTestArray, NBRTESTGETOPONEVALUE, testGetOpOneValue);
+//     //initTest(t, &sizeTestArray, NBRTESTGETOPTWOVALUE, testGetOpTwoValue);
+//     //initTest(t, &sizeTestArray, NBRTESTEXECOPCODECPU, testCPUExecOpCode);
+//
+//     formatTest(t,true,true,sizeTestArray);
+//
+//     free(t);
+//     exit(EXIT_SUCCESS);
+// }
+//
 uint32_t testInitCPU(Test *t, uint32_t offset)
 {
     //initCPU
@@ -201,7 +222,7 @@ uint32_t testDecrementDelaySound(Test *t, uint32_t offset)
 
 uint32_t testGetInstruction(Test *t, uint32_t offset)
 {
-    offset -= NBRTESTGETINSTRUCTION;
+    offset = offset - NBRTESTGETINSTRUCTION;
     uint8_t stack[STACK];
     uint16_t stackOpcode[STACK/2];
     uint16_t instructionStack[STACK/2];
@@ -257,7 +278,8 @@ uint32_t testGetInstruction(Test *t, uint32_t offset)
 
 uint32_t testGetInstructionID(Test *t, uint32_t offset)
 {
-    offset -= NBRTESTGETINSTRUCTIONID;
+    offset = offset - NBRTESTGETINSTRUCTIONID;
+
     uint8_t stack[STACK];
     uint16_t stackOpcode[STACK/2];
     uint16_t instructionStack[STACK/2];
@@ -305,6 +327,7 @@ uint32_t testGetInstructionID(Test *t, uint32_t offset)
     processTest(t + offset + 32,"getInstructionID(0xFB33) = 32", getInstructionID(0xFB33, masque, id) == 32);
     processTest(t + offset + 33,"getInstructionID(0xFB55) = 33", getInstructionID(0xFB55, masque, id) == 33);
     processTest(t + offset + 34,"getInstructionID(0xFB65) = 34", getInstructionID(0xFB65, masque, id) == 34);
+
     return NBRTESTGETINSTRUCTIONID;
 }
 
@@ -682,4 +705,16 @@ uint32_t testCPUExecOpCode(Test *t, uint32_t offset)
 
     free(cpuExecOpCode);
     return NBRTESTEXECOPCODECPU;
+}
+
+void initTest(Test *t, uint32_t *sizeTestArray, uint32_t nbrTest, uint32_t (*f)(Test *t, uint32_t offset))
+{
+    *sizeTestArray += nbrTest;
+    t = realloc(t,sizeof(t) + (sizeof(Test) * (*sizeTestArray)));
+    if (t == NULL)
+    {
+        fprintf(stderr, "ERROR init test !\n");
+        exit(EXIT_FAILURE);
+    }
+    (*f)(t, *sizeTestArray);
 }

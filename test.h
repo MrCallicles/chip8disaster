@@ -18,6 +18,8 @@ typedef struct{
     char strCondition[STRTEST];
 } Test;
 
+void initTest(Test *t, uint32_t *size, uint32_t nbrTest, uint32_t (*f)(Test *t, uint32_t offset));
+
 void processTest(Test *t, char* strCond, bool condition);
 void formatTest(Test *t,bool passed, bool not_passed, uint32_t size);
 
