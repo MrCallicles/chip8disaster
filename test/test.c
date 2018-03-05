@@ -64,7 +64,8 @@ void processTest(Test *t, char* strCond, bool condition)
     else strcpy(t->strCondition, strCond);
 }
 
-int main(void){
+int main(void)
+{
     Test* t = NULL;
     uint32_t size = 0;
 

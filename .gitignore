@@ -9,3 +9,6 @@ test_chip
 
 #ressources
 roms
+
+#divers
+*.swp

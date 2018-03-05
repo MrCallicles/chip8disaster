@@ -140,7 +140,6 @@ void execOpCodeCPU(Cpu *cpu,
                   uint16_t opOne,
                   uint16_t opTwo)
 {
-    int16_t tmp = 0;
     switch(instruction){
         case 0:
             //CLS 0x00E0
@@ -203,24 +202,21 @@ void execOpCodeCPU(Cpu *cpu,
             break;
         case 15:
             //SUB Vx Vy
-            tmp = (size_t)cpu->V[opOne] - (size_t)cpu->V[opTwo];
-            if(tmp < 0){
-                tmp = cpu->V[opTwo] - cpu->V[opOne];
-                cpu->V[0xF] = 0x1;
-                cpu->V[opOne] = tmp;
-            }
-            else{
-                cpu->V[opOne] = cpu->V[opOne] - cpu->V[opTwo];
-            }
+            if(cpu->V[opOne] > cpu->V[opTwo]) cpu->V[0xF] = 0x1;
+            else cpu->V[0xF] = 0x0;
+            cpu->V[opOne] = cpu->V[opOne] - cpu->V[opTwo];
             break;
         case 16:
             //SHR
             if(cpu->V[opOne] & 1) cpu->V[0xF] = 1;
             else cpu->V[0xF] = 0;
-            cpu->V[opOne] = cpu->V[opOne] << 2;
+            cpu->V[opOne] = cpu->V[opOne] >> 1;
             break;
         case 17:
             //SUBN
+            if(cpu->V[opTwo] > cpu->V[opOne]) cpu->V[0xF] = 0x1;
+            else cpu->V[0xF] = 0x0;
+            cpu->V[opOne] = cpu->V[opTwo] - cpu->V[opOne];
             break;
         case 18:
             //SHL

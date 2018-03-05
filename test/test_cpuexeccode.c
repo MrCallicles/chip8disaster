@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <string.h>
+#include <string.h> 
 #include "../cpu.h"
 #include "../stack.h"
 #include "../define.h"
@@ -202,26 +202,44 @@ uint32_t testCPUExecOpCode(Test *t, uint32_t offset)
 
     i++;
 
-    //!!!! vérifier les definitions des opcode
-    //initCPU(cpuExecOpCode);
-    //cpuExecOpCode->V[3] = 0xF0;
-    //cpuExecOpCode->V[5] = 0x0F;
-    //execOpCodeCPU(cpuExecOpCode, 15, 3, 5);
-    //processTest(t + offset + i,
-    //            "execOpCodeCPU(15 , V[3], V[5]) (SUB Vx, Vy with carry)",
-    //            (cpuExecOpCode->V[3] == (0xF0 - 0x0F)) && (cpuExecOpCode->V[0xF] == 0));
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xF0;
+    cpuExecOpCode->V[5] = 0x0F;
+    execOpCodeCPU(cpuExecOpCode, 15, 3, 5);
+    processTest(t + offset + i,
+                "execOpCodeCPU(15 , V[3], V[5]) (SUB Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == (0xF0 - 0x0F)) && (cpuExecOpCode->V[0xF] == 1));
 
-    //i++;
+    i++;
 
-    //initCPU(cpuExecOpCode);
-    //cpuExecOpCode->V[3] = 0xA;
-    //cpuExecOpCode->V[5] = 0xF;
-    //execOpCodeCPU(cpuExecOpCode, 15, 3, 5);
-    //processTest(t + offset + i,
-    //            "execOpCodeCPU(15 , V[3], V[5]) (SUB Vx, Vy with carry)",
-    //            (cpuExecOpCode->V[3] == (0xF - 0xA)) && (cpuExecOpCode->V[0xF] == 1));
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[3] = 0xA;
+    cpuExecOpCode->V[5] = 0xF;
+    execOpCodeCPU(cpuExecOpCode, 15, 3, 5);
+    processTest(t + offset + i,
+                "execOpCodeCPU(15 , V[3], V[5]) (SUB Vx, Vy with carry)",
+                (cpuExecOpCode->V[3] == (0xFB)) && (cpuExecOpCode->V[0xF] == 0));
 
-    //i++;
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[8] = 0xA;
+    execOpCodeCPU(cpuExecOpCode, 16, 8, 0xA);
+    processTest(t + offset + i,
+                "execOpCodeCPU(16 , V[8], V[0xA]) (SHR Vx)",
+                (cpuExecOpCode->V[8] == 0xA >> 1) && (cpuExecOpCode->V[0xF] == 0));
+
+    i++;
+
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[8] = 0xB;
+    execOpCodeCPU(cpuExecOpCode, 16, 8, 0xA);
+    processTest(t + offset + i,
+                "execOpCodeCPU(16 , V[8], V[0xA]) (SHR Vx)",
+                (cpuExecOpCode->V[8] == 0xB >> 1) && (cpuExecOpCode->V[0xF] == 1));
+
+    i++;
+
 
 
     free(cpuExecOpCode);
