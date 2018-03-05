@@ -1,5 +1,4 @@
-#ifndef TEST_H
-#define TEST_H
+#pragma once
 
 #define BUFFERTEST 4096
 #define STRTEST 128
@@ -32,5 +31,4 @@ uint32_t testGetOpOneValue(Test *t, uint32_t offset);
 uint32_t testGetOpTwoValue(Test *t, uint32_t offset);
 uint32_t testCPUExecOpCode(Test *t, uint32_t offset);
 
-#endif
 

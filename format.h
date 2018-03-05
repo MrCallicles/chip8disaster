@@ -1,5 +1,4 @@
-#ifndef FORMAT_H
-#define FORMAT_H
+#pragma once
 #include "stack.h"
 #include <stdlib.h>
 
@@ -15,4 +14,3 @@ void formatASM(uint16_t stackOpcode[STACK/2],
                char* instructionASM[NBRINSTRUCTION],
                uint32_t size);
 
-#endif

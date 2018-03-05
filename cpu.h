@@ -1,5 +1,4 @@
-#ifndef CPU_H
-#define CPU_H
+#pragma once
 #include <stdbool.h>
 #include "stack.h"
 
@@ -47,4 +46,3 @@ void execOpCodeCPU(Cpu *cpu,
                   uint16_t opOne,
                   uint16_t opTwo);
 
-#endif

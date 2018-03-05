@@ -1,5 +1,4 @@
-#ifndef STACK_H
-#define STACK_H
+#pragma once
 
 #define STACK 1000
 #define NBRINSTRUCTION 35
@@ -43,4 +42,3 @@ char* getInstructionASM(uint16_t opcode,
                         uint16_t id[NBRINSTRUCTION],
                         char* instructionASM[NBRINSTRUCTION]);
 
-#endif

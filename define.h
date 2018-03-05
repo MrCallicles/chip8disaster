@@ -1,7 +1,5 @@
-#ifndef DEFINE_H
-#define DEFINE_H
+#pragma once
 
 #define STACK 1000
 #define NBRINSTRUCTION 35
 
-#endif

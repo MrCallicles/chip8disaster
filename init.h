@@ -1,5 +1,4 @@
-#ifndef INIT_H
-#define INIT_H
+#pragma once
 
 #define STACK_INIT 1000
 #define NBRINSTRUCTION_INIT 35
@@ -14,4 +13,3 @@ void init(uint8_t stack[STACK_INIT],
           FILE *rom,
           uint32_t *size);
 
-#endif
