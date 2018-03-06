@@ -141,7 +141,7 @@ int main(void)
     }
     testCPUExecOpCode(t, size);
 
-    formatTest(t,false,true,size);
+    formatTest(t,true,true,size);
 
     free(t);
     exit(EXIT_SUCCESS);

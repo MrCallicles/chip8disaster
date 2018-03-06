@@ -222,12 +222,13 @@ void execOpCodeCPU(Cpu *cpu,
             //SHL
             if(cpu->V[opOne] & 128) cpu->V[0xF] = 1;
             else cpu->V[0xF] = 0;
-            cpu->V[opOne] = cpu->V[opOne] << 2;
+            cpu->V[opOne] = cpu->V[opOne] << 1;
             break;
         case 19:
             //SNE
             if(cpu->V[opOne] != cpu->V[opTwo]) cpu->PC += 2;
             break;
+            //LD i, nnn
         case 20:
             cpu->I = opTwo;
             break;
