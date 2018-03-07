@@ -6,23 +6,49 @@ For now, only the disassembler works, in a simple but effective way.
 
 # Compile
 
-To compile : make. Then ./chip8disaster
+To compile : 
+```bash
+make 
+```
 
-To compile the test program : make test. Then ./test\_chip
-(there must be a roms/PONG path in the directory)
+To Run:
+```bash
+./chip8disaster
+```
 
-To clean the directory (delete .o files) : make clean
+To compile the test program :
+```bash
+make test
+```
+
+To run the test program: (there must be a roms/PONG path in the directory)
+```bash
+./test\_chip
+```
+
+To clean the directory (delete .o files and executables) :
+```bash
+make clean
+```
 
 # Usage
 
-disassemble : ./chip8disaster [PATH TO ROM]
+disassemble : 
+```bash 
+./chip8disaster [PATH TO ROM]
+```
 
-debugger : ./chip8disaster [PATH TO ROM] --debug
+debugger :
+```bash 
+./chip8disaster [PATH TO ROM] --debug
+```
 
 emulator : Not working
 
-test : ./test\_chip
-(there must be a roms/PONG path in the directory)
+test : (there must be a roms/PONG path in the directory)
+```bash 
+ ./test\_chip
+```
 
 # Debugger
 
