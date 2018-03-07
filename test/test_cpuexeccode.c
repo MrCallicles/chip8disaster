@@ -247,8 +247,6 @@ uint32_t testCPUExecOpCode(Test *t, uint32_t offset)
     cpuExecOpCode->V[8] = 0xF;
     cpuExecOpCode->V[0xA] = 0xA;
     execOpCodeCPU(cpuExecOpCode, 17, 8, 0xA);
-    printf("cpu->8 : %x\n", cpuExecOpCode->V[8]);
-    printf("cpu->F : %x\n", cpuExecOpCode->V[0xF]);
     processTest(t + offset + i,
                 "execOpCodeCPU(17 , V[8], V[0xA]) (SUBN Vx, Vy)",
                 (cpuExecOpCode->V[8] == 0xFE) && (cpuExecOpCode->V[0xF] == 0));
@@ -259,8 +257,6 @@ uint32_t testCPUExecOpCode(Test *t, uint32_t offset)
     cpuExecOpCode->V[8] = 0xA;
     cpuExecOpCode->V[0xA] = 0xB;
     execOpCodeCPU(cpuExecOpCode, 17, 8, 0xA);
-    printf("cpu->8 : %x\n", cpuExecOpCode->V[8]);
-    printf("cpu->F : %x\n", cpuExecOpCode->V[0xF]);
     processTest(t + offset + i,
                 "execOpCodeCPU(17 , V[8], V[0xA]) (SUBN Vx, Vy)",
                 (cpuExecOpCode->V[8] == 0x1) && (cpuExecOpCode->V[0xF] == 1));
@@ -308,6 +304,86 @@ uint32_t testCPUExecOpCode(Test *t, uint32_t offset)
 
     i++;
 
+    //JP NNN (nnn + V[0])
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[0] = 0x5;
+    execOpCodeCPU(cpuExecOpCode, 20, 0xBBB, 0xBBB);
+    processTest(t + offset + i, "execOpCodeCPU(20, x, x) (LD I,nnn)", cpuExecOpCode->PC == (0xbbb + 0x5));
+
+    i++;
+
+    //DRW
+    processTest(t + offset + i, "execOpCodeCPU(23, x, x) (DRW)",false);
+
+    i++; 
+
+    //SKP
+    processTest(t + offset + i, "execOpCodeCPU(24, x, x) (SKP)",false);
+    
+    i++; 
+
+    //SKNP
+    processTest(t + offset + i, "execOpCodeCPU(24, x, x) (SKNP)",false);
+
+    i++;
+
+    //LD Vx DT
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->DT = 0xA;
+    execOpCodeCPU(cpuExecOpCode, 26, 3, 3);
+    processTest(t + offset + i, "execOpCodeCPU(26, V[3], V[3]) (LD Vx, DT)", cpuExecOpCode->V[3] == 0xA);
+
+    i++;
+
+    //LD Vx,DT
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->DT = 0xA;
+    execOpCodeCPU(cpuExecOpCode, 26, 3, 3);
+    processTest(t + offset + i, "execOpCodeCPU(27, V[3], V[3]) (LD Vx, DT)", cpuExecOpCode->V[3] == 0xA);
+
+    i++;
+
+    //LD Vx,k
+    processTest(t + offset + i, "execOpCodeCPU(27, Vx, k) LD Vx, k", false);
+
+    i++;
+
+    //LD DT, Vx
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[5] = 0xAA;
+    execOpCodeCPU(cpuExecOpCode, 28, 0x5, 0x5);
+    processTest(t + offset + i, "execOpCodeCPU(28, Vx) LD DT, Vx", cpuExecOpCode->DT == 0xAA);
+
+    i++;
+
+    //LD ST, Vx
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[5] = 0xAA;
+    execOpCodeCPU(cpuExecOpCode, 29, 0x5, 0x5);
+    processTest(t + offset + i, "execOpCodeCPU(29, Vx) LD ST, Vx", cpuExecOpCode->ST == 0xAA);
+
+    i++;
+
+    //LD ADD I, Vx
+    initCPU(cpuExecOpCode);
+    cpuExecOpCode->V[5] = 0xAA;
+    cpuExecOpCode->I = 0xAAA;
+    execOpCodeCPU(cpuExecOpCode, 30, 0x5, 0x5);
+    processTest(t + offset + i, "execOpCodeCPU(30, Vx) ADD I, Vx", cpuExecOpCode->I == 0xAAA + 0xAA);
+
+    i++;
+
+    //LD F, Vx
+    processTest(t + offset + i, "execOpCodeCPU(31, F, Vx) LD F,Vx", false);
+    i++;
+    //LD B, Vx
+    processTest(t + offset + i, "execOpCodeCPU(32, B, Vx) LD B,Vx", false);
+    i++;
+    //LD [I], Vx
+    processTest(t + offset + i, "execOpCodeCPU(33, [I], Vx) LD [I],Vx", false);
+    i++;
+    //LD Vx, [I]
+    processTest(t + offset + i, "execOpCodeCPU(34, Vx, [I]) LD Vx,[I]", false);
 
     free(cpuExecOpCode);
     return NBRTESTEXECOPCODECPU;

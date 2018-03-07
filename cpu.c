@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <time.h>
 #include "stack.h"
 #include "cpu.h"
 
@@ -12,6 +13,7 @@ void decrementDelaySound(Cpu *cpu)
 
 void initCPU(Cpu *cpu)
 {
+    srand(time(NULL));
     for(uint8_t i = 0; i < NBRREG; i++){
         cpu->V[i] = 0;
      }
@@ -228,15 +230,17 @@ void execOpCodeCPU(Cpu *cpu,
             //SNE
             if(cpu->V[opOne] != cpu->V[opTwo]) cpu->PC += 2;
             break;
-            //LD i, nnn
         case 20:
+            //LD i, nnn
             cpu->I = opTwo;
             break;
         case 21:
+            //
             cpu->PC = cpu->V[0x0] + opTwo;
             break;
         case 22:
             //RND
+            cpu->V[opOne] = opTwo & (uint8_t)rand();
             break;
         case 23:
             //DRW
@@ -259,7 +263,7 @@ void execOpCodeCPU(Cpu *cpu,
             cpu->DT = cpu->V[opOne];
             break;
         case 29:
-            //LD DT, Vx
+            //LD ST, Vx
             cpu->ST = cpu->V[opOne];
             break;
         case 30:
