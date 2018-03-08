@@ -23,7 +23,7 @@ make test
 
 To run the test program: (there must be a roms/PONG path in the directory)
 ```bash
-./test\_chip
+./test_chip
 ```
 
 To clean the directory (delete .o files and executables) :
@@ -47,7 +47,7 @@ emulator : Not working
 
 test : (there must be a roms/PONG path in the directory)
 ```bash 
- ./test\_chip
+ ./test_chip
 ```
 
 # Debugger
